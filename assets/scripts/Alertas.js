@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <i class="fa-regular fa-bell"></i>
                   <div class="alerta-text">
                     <p><b>Alerta:</b> ${a.titulo}</p>
-                    <p><b>Lugar:</b> ${a.lugar}</p>
+                    <p><b>Lugar:</b> <span class="alerta-lugar">${a.lugar}</span></p>
                     <p><b>Fecha:</b> ${a.fecha}</p>
                     <p><b>Hora:</b> ${a.hora}</p>
                   </div>
@@ -259,6 +259,7 @@ hamburger.addEventListener("click", () => {
     hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
   }
 });
+
 
 
 
