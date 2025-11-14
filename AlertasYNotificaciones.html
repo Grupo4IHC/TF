@@ -55,6 +55,7 @@
     <!-- Main -->
     <main>
       <h1>Alertas y Notificaciones</h1>
+<button class="btn btn-add" id="btnNotificaciones">📢 Recibir Notificaciones</button>
 
       <div class="btns">
         <button class="btn btn-add" id="btnAddAlerta">+ Añadir Alerta</button>
@@ -85,6 +86,21 @@
         </form>
       </div>
     </div>
+
+    <!-- Modal Notificaciones -->
+<div id="modalNotificaciones" class="modal">
+  <div class="modal-card">
+    <span class="close" id="closeNotificaciones">&times;</span>
+    <h2>¿Deseas recibir notificaciones?</h2>
+
+    <p>Puedes activarlas o desactivarlas cuando quieras.</p>
+
+    <div style="display:flex; gap:1rem; justify-content:center; margin-top:20px;">
+      <button class="btn btn-add" id="btnSiNotificaciones">Sí</button>
+      <button class="btn btn-volver" id="btnNoNotificaciones">No</button>
+    </div>
+  </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -147,5 +163,6 @@
     <script src="assets/scripts/Alertas.js"></script>
   </body>
 </html>
+
 
 
