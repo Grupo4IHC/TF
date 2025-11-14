@@ -1,3 +1,35 @@
+/* Botón si */
+.btn-si {
+  background-color: #20b3cf; 
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.btn-si:hover {
+  background-color: #1a9bb3; 
+}
+
+/* Botón no */
+.btn-no {
+  background-color: #e74c3c;  
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease;
+}
+
+.btn-no:hover {
+  background-color: #c0392b; 
+}
+
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -177,36 +209,5 @@ h1 {
   }
 }
 
-/* Botón si */
-.btn-si {
-  background-color: #20b3cf; 
-  color: white;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s ease;
-}
-
-.btn-si:hover {
-  background-color: #1a9bb3; 
-}
-
-/* Botón no */
-.btn-no {
-  background-color: #e74c3c;  
-  color: white;
-  padding: 10px 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s ease;
-}
-
-.btn-no:hover {
-  background-color: #c0392b; 
-}
 
 
