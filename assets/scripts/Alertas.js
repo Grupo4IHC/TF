@@ -1,3 +1,32 @@
+const filtroDistrito = document.getElementById("filtroDistrito");
+const listaAlertas = document.getElementById("alertasList");
+
+// Filtrar cuando cambia el selector
+filtroDistrito.addEventListener("change", () => {
+  filtrarAlertas();
+});
+
+// Función de filtrado
+function filtrarAlertas() {
+  const distritoSeleccionado = filtroDistrito.value;
+
+  // Tomar todas las tarjetas de alerta
+  const tarjetas = document.querySelectorAll(".alerta-card");
+
+  tarjetas.forEach(card => {
+    const lugar = card.querySelector(".alerta-lugar").textContent.trim();
+
+    if (distritoSeleccionado === "todos") {
+      card.style.display = "flex";
+    } else if (lugar === distritoSeleccionado) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+
 // --- Modal Recomendación del Día ---
 const modalRecomendacion = document.getElementById("modalRecomendacion");
 const btnRecomendacion = document.getElementById("btnRecomendacion");
@@ -230,6 +259,7 @@ hamburger.addEventListener("click", () => {
     hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
   }
 });
+
 
 
 
