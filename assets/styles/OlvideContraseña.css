@@ -1,0 +1,268 @@
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #22b5d4;
+}
+
+.forgot-container {
+  padding: 120px 30px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.forgot-form {
+  background-color: #22b5d4;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 420px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.olvide-logo {
+  width: 110px;
+  height: auto;
+}
+
+.forgot-form h2 {
+  color: black;
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.forgot-form p {
+  font-size: 16px;
+  color: black;
+  margin-bottom: 20px;
+  max-width: 280px;
+}
+
+.forgot-form input {
+  width: 90%;
+  font-size: 15px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.forgot-form button {
+  width: 90%;
+  font-size: 15px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.forgot-form button:hover {
+  background-color: #00ff6a;
+}
+
+.volver-btn {
+  width: 90%;
+  background-color: white;
+  color: black;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.volver-btn:hover {
+  background-color: red;
+  color: black;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  text-align: center;
+  width: 320px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: aparecer 0.3s ease-in-out;
+}
+
+.popup-content h3 {
+  color: #0077b6;
+  margin-bottom: 10px;
+}
+
+.popup-content p {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.popup-content button {
+  background-color: #27b3d7;
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.popup-content button:hover {
+  background-color: #0099cc;
+}
+
+.popup-icon {
+  font-size: 40px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+@keyframes aparecer {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* =====Tablets medianas ===== */
+@media (max-width: 900px) {
+  .forgot-form {
+    width: 350px;
+    padding: 30px;
+  }
+
+  .forgot-form h2 {
+    font-size: 22px;
+  }
+
+  .forgot-form p {
+    font-size: 15px;
+    max-width: 240px;
+  }
+
+  .forgot-form input,
+  .forgot-form button,
+  .volver-btn {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .popup-content {
+    width: 280px;
+    padding: 25px 30px;
+  }
+
+  .popup-content h3 {
+    font-size: 18px;
+  }
+}
+
+/* ===== Responsive: Tablets pequeñas, Celulares Horizontales ===== */
+@media (max-width: 700px) {
+  .forgot-form {
+    width: 300px;
+    padding: 25px;
+  }
+
+  .forgot-form h2 {
+    font-size: 20px;
+  }
+
+  .forgot-form p {
+    font-size: 14px;
+    max-width: 220px;
+  }
+
+  .forgot-form input,
+  .forgot-form button,
+  .volver-btn {
+    font-size: 13px;
+    padding: 7px;
+  }
+
+  .popup-content {
+    width: 260px;
+    padding: 20px 25px;
+  }
+
+  .popup-content h3 {
+    font-size: 17px;
+  }
+}
+
+/* ===== Responsive Celulares ===== */
+@media (max-width: 480px) {
+  body {
+    height: auto;
+    padding: 15px;
+  }
+
+  .forgot-form {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .forgot-form h2 {
+    font-size: 18px;
+  }
+
+  .forgot-form p {
+    font-size: 13px;
+    max-width: 100%;
+  }
+
+  .forgot-form input,
+  .forgot-form button,
+  .volver-btn {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .popup-content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .popup-content h3 {
+    font-size: 16px;
+  }
+}

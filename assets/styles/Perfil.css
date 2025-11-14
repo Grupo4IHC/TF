@@ -1,0 +1,79 @@
+/* ======== ESTILOS DEL PERFIL ======== */
+body {
+  background-color: #20b3cf;
+}
+
+/* Contenedor principal */
+.perfil-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+  min-height: 100vh;
+}
+
+/* Tarjeta del perfil */
+.perfil-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  padding: 40px 50px;
+  max-width: 550px;
+  width: 100%;
+  text-align: left;
+}
+
+/* Título */
+.perfil-card h2 {
+  text-align: center;
+  color: #007bff;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* Información del usuario */
+.perfil-info p {
+  font-size: 18px;
+  margin: 12px 0;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+}
+
+.perfil-info strong {
+  color: #007bff;
+}
+
+/* Botón "Atrás" */
+.btn-atras {
+  background-color: white;
+  color: #007bff;
+  font-weight: bold;
+  border: 2px solid #007bff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-atras:hover {
+  background-color: #007bff;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .perfil-card {
+    padding: 25px;
+  }
+
+  .perfil-info p {
+    font-size: 16px;
+  }
+
+  .perfil-card h2 {
+    font-size: 22px;
+  }
+}

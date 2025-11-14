@@ -1,0 +1,100 @@
+.titulo-mapa {
+  padding: 200px 30px 50px;
+  text-align: center;
+  color: #004aad;
+  margin-top: 90px;
+  font-weight: 700;
+}
+
+/* Map container */
+#map {
+  padding: 200px 30px 50px;
+  height: 500px;
+  width: 85%;
+  margin: 20px auto;
+  border-radius: 16px;
+  border: 3px solid #004aad;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Botón volver */
+.btn-volver {
+  display: block;
+  margin: 20px auto 60px;
+  padding: 10px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-volver:hover {
+  background-color: #00337a;
+}
+
+/* Estilo popup */
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.leaflet-popup-tip {
+  background: #004aad !important;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .titulo-mapa {
+    padding: 150px 20px 40px;
+    font-size: 2rem;
+  }
+
+  #map {
+    height: 450px;
+    width: 90%;
+  }
+
+  .btn-volver {
+    padding: 9px 22px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .titulo-mapa {
+    padding: 120px 15px 35px;
+    font-size: 1.8rem;
+  }
+
+  #map {
+    height: 400px;
+    width: 95%;
+  }
+
+  .btn-volver {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-mapa {
+    padding: 100px 10px 30px;
+    font-size: 1.6rem;
+    margin-top: 70px;
+  }
+
+  #map {
+    height: 350px;
+    width: 100%;
+  }
+
+  .btn-volver {
+    padding: 7px 18px;
+    font-size: 0.85rem;
+  }
+}

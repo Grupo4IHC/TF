@@ -1,0 +1,171 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #20b3cf;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding-top: 50px;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 140px);
+  padding: 120px 30px 50px;
+}
+
+.register-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.register-header .logo {
+  width: 160px;
+  max-width: 100%;
+  height: auto;
+}
+
+.register-header h2 {
+  color: white;
+  font-size: 2em;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.register-form input {
+  margin: 8px 0;
+  padding: 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+}
+
+.register-form button {
+  background-color: white;
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.register-form button:hover {
+  background-color: #00ff6a;
+  color: black;
+  font-weight: bold;
+}
+
+.login-link {
+  margin-top: 15px;
+  color: white;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Tablets medianas*/
+@media (max-width: 900px) {
+  .register-container {
+    padding: 100px 20px 40px;
+    min-height: calc(100vh - 120px);
+  }
+
+  .register-form {
+    width: 80%;
+    max-width: 450px;
+  }
+
+  .register-header .logo {
+    width: 140px;
+  }
+
+  .register-header h2 {
+    font-size: 1.8em;
+  }
+}
+
+/* Tablets pequeñas */
+@media (max-width: 700px) {
+  main {
+    padding-top: 120px;
+  }
+
+  .register-container {
+    padding: 80px 20px 40px;
+  }
+
+  .register-form {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .register-form input {
+    padding: 16px;
+    font-size: 18px;
+  }
+
+  .register-form button {
+    font-size: 18px;
+  }
+
+  .register-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .register-header .logo {
+    width: 130px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  main {
+    padding-top: 110px;
+  }
+
+  .register-container {
+    padding: 60px 20px 40px;
+  }
+
+  .register-header h2 {
+    font-size: 1.6em;
+  }
+
+  .register-form {
+    width: 100%;
+  }
+
+  .register-form input {
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  .register-form button {
+    padding: 12px;
+    font-size: 17px;
+    width: 100%;
+  }
+
+  .login-link {
+    font-size: 13px;
+  }
+}

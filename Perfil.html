@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil - AquaAlert</title>
+    <link rel="icon" href="assets\images\AquaAlert.jpg" type="image/png" />
+    <link rel="stylesheet" href="assets\styles\global.css" />
+    <link rel="stylesheet" href="assets\styles\Hamburguesa.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="SesionIniciada.html">
+          <img src="assets\images\AquaAlert.jpg" alt="Logo AquaAlert" />
+        </a>
+      </div>
+
+      <!-- Botón menú hamburguesa -->
+      <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-item"><a href="SesionIniciada.html">Inicio</a></div>
+        <div class="nav-item">
+          <a href="SobreNosotros.html">Sobre Nosotros</a>
+        </div>
+        <div class="nav-item"><a href="Contacto.html">Contacto</a></div>
+
+        <div id="auth-buttons">
+          <a href="Registro.html" class="btn-registrarse">Registrarse</a>
+          <a href="Login.html" class="btn-iniciarSesion">Iniciar Sesión</a>
+        </div>
+
+              <div id="profile-button">
+        <button class="btn-iniciarSesion" id="btnPerfil">Perfil</button>
+        <div id="profile-menu">
+          <a href="Perfil.html">Perfil</a>
+          <a href="#" id="cerrarSesion">Cerrar sesión</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="perfil-container">
+      <h1>Mi Perfil</h1>
+
+      <div class="perfil-info">
+        <p><strong>Usuario:</strong> <span id="usuario"></span></p>
+        <p><strong>Nombre:</strong> <span id="nombre"></span></p>
+        <p><strong>Correo:</strong> <span id="correo"></span></p>
+        <p><strong>Número:</strong> <span id="numero"></span></p>
+      </div>
+
+      <button id="btnAtras" class="btn-volver">Volver atrás</button>
+    </main>
+
+    <script src="assets/scripts/Perfil.js"></script>
+  </body>
+</html>

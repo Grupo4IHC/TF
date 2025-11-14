@@ -1,0 +1,189 @@
+/* ===== Menu Hamburguesa===== */
+.hamburger {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: #000;
+  padding: 6px;
+  border-radius: 8px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+/* Mostrar hamburguesa y ocultar menú en pantallas pequeñas */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+    margin-right: 15px;
+    font-size: 22px;
+    z-index: 30;
+    position: relative;
+  }
+
+  /* Menú desplegable */
+  .nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+    z-index: 40;
+  }
+
+  .nav.nav-active {
+    display: flex;
+    animation: fadeIn 0.25s ease;
+  }
+
+  .nav-item {
+    margin: 8px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-item a {
+    color: #000;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.2s ease;
+  }
+
+  .nav-item a:hover {
+    color: #0078ff;
+  }
+
+  /* Botones */
+  .btn-registrarse,
+  .btn-iniciarSesion {
+    display: none;
+    width: 75%;
+    margin: 6px auto; /* 🔹 más juntos también */
+    text-align: center;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 8px;
+  }
+
+  .btn-registrarse.nav-active,
+  .btn-iniciarSesion.nav-active {
+    display: block;
+  }
+}
+
+/* Icono hamburguesa animado */
+.hamburger i {
+  transition: all 0.3s ease;
+}
+
+.hamburger.open i {
+  transform: rotate(90deg);
+  font-size: 18px;
+}
+
+/* Perfil dentro del menú hamburguesa */
+.perfil-container {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.profile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 8px;
+  margin-top: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-menu a {
+  padding: 10px;
+  display: block;
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.profile-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Mostrar menú perfil */
+.profile-menu.show {
+  display: flex;
+}
+
+/* Hamburguesa */
+.hamburger {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  background: transparent;
+  z-index: 50;
+}
+
+/* Menú nav responsive */
+@media (max-width: 1024px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+    z-index: 40;
+  }
+
+  .nav.nav-active {
+    display: flex;
+  }
+
+  .nav-item {
+    margin: 8px 0;
+  }
+
+  .perfil-container {
+    width: 100%;
+    text-align: center;
+  }
+
+  .profile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .profile-menu.show {
+    display: flex;
+  }
+}

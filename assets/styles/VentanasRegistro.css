@@ -1,0 +1,155 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.error {
+  padding: 200px 30px 50px;
+  background-color: #20b3cf;
+}
+
+.success {
+  padding: 200px 30px 50px;
+  background-color: #20b3cf;
+}
+
+.window {
+  background-color: white;
+  padding: 40px 60px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: #333;
+}
+
+.window i {
+  font-size: 70px;
+  margin-bottom: 15px;
+}
+
+.error i {
+  color: #ff1744;
+}
+
+.success i {
+  color: #00c853;
+}
+
+.window h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+.window p {
+  font-size: 1.1em;
+  margin-bottom: 25px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #20b3cf;
+  color: white;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #0097a7;
+}
+
+/* ===== Tablets medianas ===== */
+@media (max-width: 900px) {
+  .window {
+    padding: 30px 40px;
+  }
+
+  .window i {
+    font-size: 60px;
+  }
+
+  .window h2 {
+    font-size: 1.6em;
+  }
+
+  .window p {
+    font-size: 1em;
+  }
+
+  .btn {
+    padding: 10px 25px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ===== Tablets pequeñas y celulares horizontales ===== */
+@media (max-width: 700px) {
+  .window {
+    padding: 25px 30px;
+  }
+
+  .window i {
+    font-size: 50px;
+  }
+
+  .window h2 {
+    font-size: 1.4em;
+  }
+
+  .window p {
+    font-size: 0.95em;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== Celulares ===== */
+@media (max-width: 480px) {
+  body {
+    height: auto;
+    padding: 20px;
+  }
+
+  .window {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .window i {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+
+  .window h2 {
+    font-size: 1.2em;
+  }
+
+  .window p {
+    font-size: 0.9em;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+
+  .nav.nav-active {
+    display: flex;
+  }
+}

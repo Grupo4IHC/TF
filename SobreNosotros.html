@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre Nosotros - AquaAlert</title>
+    <link rel="icon" href="assets\images\AquaAlert.jpg" type="image/png" />
+    <link rel="stylesheet" href="assets\styles\global.css" />
+    <link rel="stylesheet" href="assets\styles\SobreNosotros.css" />
+    <link rel="stylesheet" href="assets\styles\Hamburguesa.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets\images\AquaAlert.jpg" alt="Logo AquaAlert" />
+        </a>
+      </div>
+
+      <!-- Botón menú hamburguesa -->
+      <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-item"><a href="index.html">Inicio</a></div>
+        <div class="nav-item">
+          <a href="SobreNosotros.html">Sobre Nosotros</a>
+        </div>
+        <div class="nav-item"><a href="Contacto.html">Contacto</a></div>
+        <a href="Registro.html" class="btn-registrarse">Registrarse</a>
+        <a href="Login.html" class="btn-iniciarSesion">Iniciar Sesión</a>
+      </nav>
+
+      <div id="profile-button" style="display: none">
+        <button class="btn-iniciarSesion" id="btnPerfil">Usuario</button>
+      </div>
+    </header>
+
+    <main class="about-container">
+      <img
+        src="assets\images\AquaAlert.jpg"
+        alt="Logo AquaAlert"
+        class="about-logo"
+      />
+
+      <div class="about-content">
+        <h1 class="about-title">Sobre Nosotros</h1>
+
+        <button class="accordion">¿Quiénes somos?</button>
+        <div class="panel">
+          <p>
+            En <strong>AquaAlert</strong>, somos un equipo de innovación social
+            comprometido con garantizar el acceso a agua segura para todas las
+            familias de Lima Metropolitana. Trabajamos junto con comunidades,
+            autoridades y entidades de salud para construir un sistema de
+            vigilancia del agua más transparente, participativo y eficiente.
+          </p>
+        </div>
+
+        <button class="accordion">¿Qué hacemos?</button>
+        <div class="panel">
+          <ul>
+            <li>
+              Desarrollamos soluciones digitales que informan en tiempo real
+              sobre la calidad del agua.
+            </li>
+            <li>
+              Alertamos a la población ante riesgos sanitarios por cortes o
+              fallas de servicio.
+            </li>
+            <li>
+              Facilitamos reportes geolocalizados y comunicación directa entre
+              usuarios y autoridades.
+            </li>
+            <li>
+              Fortalecemos la coordinación entre ciudadanía y sectores de salud.
+            </li>
+          </ul>
+        </div>
+
+        <button class="accordion">Misión y Visión</button>
+        <div class="panel">
+          <p>
+            <strong>Misión:</strong> Mejorar la calidad de vida promoviendo el
+            acceso a agua limpia y segura mediante tecnología y participación
+            ciudadana.
+          </p>
+          <p>
+            <strong>Visión:</strong> Ser la plataforma líder en monitoreo y
+            gestión del agua en el Perú.
+          </p>
+        </div>
+
+        <button class="accordion">Objetivos</button>
+        <div class="panel">
+          <ul>
+            <li>
+              Garantizar la transparencia en la información sobre la calidad del
+              agua.
+            </li>
+            <li>
+              Promover la participación de la ciudadanía en la vigilancia
+              ambiental.
+            </li>
+            <li>
+              Apoyar a las autoridades con información en tiempo real para la
+              toma de decisiones.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h3 class="logo">AquaAlert</h3>
+          <p>
+            Una aplicación que empodera a los ciudadanos mediante información en
+            tiempo real sobre la calidad del agua, promoviendo un consumo seguro
+            y responsable.
+          </p>
+          <div class="social-icons">
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4 class="active">Producto</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
+            <li><a href="Contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col" id="footer-user-section">
+          <h4 class="active">Registro</h4>
+          <ul>
+            <li><a href="Registro.html">Registrarse</a></li>
+            <li><a href="Login.html">Iniciar Sesión</a></li>
+          </ul>
+        </div>
+
+        <hr class="footer-line" />
+
+        <div class="footer-bottom">
+          <p>Copyright © 2025 AquaAlert. Todos los derechos reservados.</p>
+          <div class="footer-links">
+            <span>｜</span>
+            <a href="assets\images\Terminos_de_Privacidad_AquaAlert.pdf"
+              >Términos de privacidad</a
+            >
+            <span>｜</span>
+            <a href="assets\images\Terminos_de_Servicio_AquaAlert.pdf"
+              >Términos de servicio</a
+            >
+            <span>｜</span>
+            <a href="assets\images\Proteccion de Datos.pdf"
+              >Proteccion de Datos</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/scripts/SobreNosotros.js"></script>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inicio - AquaAlert</title>
+    <link rel="icon" href="assets\images\AquaAlert.jpg" type="image/png" />
+    <link rel="stylesheet" href="assets\styles\global.css" />
+    <link rel="stylesheet" href="assets\styles\Hamburguesa.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets\images\AquaAlert.jpg" alt="Logo AquaAlert" />
+        </a>
+      </div>
+
+      <!-- Botón menú hamburguesa -->
+      <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-item"><a href="index.html">Inicio</a></div>
+        <div class="nav-item">
+          <a href="SobreNosotros.html">Sobre Nosotros</a>
+        </div>
+        <div class="nav-item"><a href="Contacto.html">Contacto</a></div>
+        <a href="Registro.html" class="btn-registrarse">Registrarse</a>
+        <a href="Login.html" class="btn-iniciarSesion">Iniciar Sesión</a>
+      </nav>
+    </header>
+
+    <!-- Botón de perfil-->
+    <div id="profile-button" style="display: none">
+      <button class="btn-iniciarSesion" id="btnPerfil">Usuario</button>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Trabajemos juntos para combatir la falta de agua potable</h1>
+            <p>
+              AquaAlert es una herramienta que te permite reportar incidencias,
+              recibir alertas tempranas sobre riesgos de contaminación y acceder
+              a datos validados por instituciones como SUNASS, Sedapal y DIGESA.
+            </p>
+          </div>
+          <div class="hero-images">
+            <img
+              src="assets\images\alerta1.jpg"
+              alt="Persona usando app AquaAlert"
+            />
+            <img src="assets\images\alerta2.jpg" alt="Medición de agua" />
+            <img src="assets\images\alerta3.jpg" alt="Vaso con agua limpia" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección de servicios -->
+      <section class="services">
+        <h2>NUESTROS SERVICIOS</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <i class="fa-solid fa-broadcast-tower"></i>
+            <h3>Monitoreo de Cisternas en Tiempo Real</h3>
+          </div>
+          <div class="service-card">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h3>Alertas y Notificaciones</h3>
+          </div>
+          <div class="service-card">
+            <i class="fa-solid fa-map"></i>
+            <h3>Mapa de Puntos de Agua Potable</h3>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Popup de inicio de sesión -->
+    <div id="popupLogin" class="popup-overlay">
+      <div class="popup-container">
+        <i class="fa-solid fa-face-frown fa-3x icon-popup"></i>
+        <h2>Es necesario iniciar sesión</h2>
+        <p>Por favor, inicia sesión para acceder a esta función.</p>
+        <div class="popup-buttons">
+          <a href="Login.html" class="btn-login">Iniciar sesión</a>
+          <button class="btn-cerrar" onclick="cerrarPopup()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <!-- Columna 1 -->
+        <div class="footer-col">
+          <h3 class="logo">AquaAlert</h3>
+          <p>
+            Una aplicación que empodera a los ciudadanos mediante información en
+            tiempo real sobre la calidad del agua, promoviendo un consumo seguro
+            y responsable.
+          </p>
+          <div class="social-icons">
+            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div>
+
+        <!-- Columna 2 -->
+        <div class="footer-col">
+          <h4 class="active">Producto</h4>
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
+            <li><a href="Contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3 -->
+        <div class="footer-col">
+          <h4 class="active">Registro</h4>
+          <ul>
+            <li><a href="Registro.html">Registrarse</a></li>
+            <li><a href="Login.html">Iniciar Sesión</a></li>
+          </ul>
+        </div>
+
+        <hr class="footer-line" />
+
+        <div class="footer-bottom">
+          <p>Copyright © 2025 AquaAlert. Todos los derechos reservados.</p>
+          <div class="footer-links">
+            <span>｜</span>
+            <a href="assets\images\Terminos_de_Privacidad_AquaAlert.pdf"
+              >Términos de privacidad</a
+            >
+            <span>｜</span>
+            <a href="assets\images\Terminos_de_Servicio_AquaAlert.pdf"
+              >Términos de servicio</a
+            >
+            <span>｜</span>
+            <a href="assets\images\Proteccion de Datos.pdf"
+              >Proteccion de Datos</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="assets/scripts/Inicio.js"></script>
+  </body>
+</html>
