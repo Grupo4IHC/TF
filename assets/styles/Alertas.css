@@ -12,13 +12,6 @@
   color: #000;
 }
 
-/* Para el main bajar el contenido */
-main {
-  padding-top: 40px !important;
-}
-
-
-
 #modalRecomendacion img {
   max-height: 250px;
   object-fit: cover;
@@ -67,7 +60,7 @@ body {
 main {
   max-width: 900px;
   margin: 20px auto;
-  padding: 200px 30px 50px;
+  padding: 160px 30px 50px;
 }
 h1 {
   text-align: center;
@@ -235,6 +228,7 @@ h1 {
     font-size: 14px;
   }
 }
+
 
 
 
