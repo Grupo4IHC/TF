@@ -145,42 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// ----- MODAL NOTIFICACIONES -----
-const modalNot = document.getElementById("modalNotificaciones");
-const btnNot = document.getElementById("btnNotificaciones");
-const closeNot = document.getElementById("closeNotificaciones");
-const btnSiNot = document.getElementById("btnSiNotificaciones");
-const btnNoNot = document.getElementById("btnNoNotificaciones");
-
-// Abrir popup
-btnNot.addEventListener("click", () => {
-  modalNot.style.display = "flex";
-});
-
-// Cerrar con X
-closeNot.addEventListener("click", () => {
-  modalNot.style.display = "none";
-});
-
-// Cerrar con botón SI
-btnSiNot.addEventListener("click", () => {
-  alert("Has elegido recibir notificaciones.");
-  modalNot.style.display = "none";
-});
-
-// Cerrar con botón NO
-btnNoNot.addEventListener("click", () => {
-  alert("Has elegido no recibir notificaciones.");
-  modalNot.style.display = "none";
-});
-
-// Cerrar si hace click fuera
-window.addEventListener("click", (e) => {
-  if (e.target === modalNot) {
-    modalNot.style.display = "none";
-  }
-});
-
 // ----- MENÚ HAMBURGUESA -----
 const hamburger = document.getElementById("hamburger");
 const nav = document.querySelector(".nav");
@@ -201,4 +165,5 @@ hamburger.addEventListener("click", () => {
     hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
   }
 });
+
 
