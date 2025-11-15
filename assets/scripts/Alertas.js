@@ -17,10 +17,15 @@ hamburger.addEventListener("click", () => {
   }
 });
 
+// ====================================
 // ESPERAR A QUE HTML CARGUE
+// ====================================
 document.addEventListener("DOMContentLoaded", () => {
 
+  // ====================================
   // NOTIFICACIONES PERSONALIZADAS
+  // ====================================
+
   const btnNotifPersonalizadas = document.getElementById("btnNotifPersonalizadas");
   const modalNotifPersonalizadas = document.getElementById("modalNotifPersonalizadas");
   const closeNotifPersonalizadas = document.getElementById("closeNotifPersonalizadas");
@@ -33,46 +38,63 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnConfirmarSi = document.getElementById("btnConfirmarSi");
   const btnConfirmarNo = document.getElementById("btnConfirmarNo");
 
-  btnNotifPersonalizadas.addEventListener("click", () => {
-    modalNotifPersonalizadas.style.display = "flex";
-  });
+  if (btnNotifPersonalizadas) {
+    btnNotifPersonalizadas.addEventListener("click", () => {
+      modalNotifPersonalizadas.style.display = "flex";
+    });
+  }
 
-  closeNotifPersonalizadas.addEventListener("click", () => {
-    modalNotifPersonalizadas.style.display = "none";
-  });
+  if (closeNotifPersonalizadas) {
+    closeNotifPersonalizadas.addEventListener("click", () => {
+      modalNotifPersonalizadas.style.display = "none";
+    });
+  }
 
-  btnConfirmarNotif.addEventListener("click", () => {
-    if (!selectDistritoNotif.value) {
-      alert("Por favor selecciona un distrito.");
-      return;
-    }
-    modalConfirmacionNotif.style.display = "flex";
-  });
+  if (btnConfirmarNotif) {
+    btnConfirmarNotif.addEventListener("click", () => {
+      if (!selectDistritoNotif.value) {
+        alert("Por favor selecciona un distrito.");
+        return;
+      }
+      modalConfirmacionNotif.style.display = "flex";
+    });
+  }
 
-  closeConfirmacionNotif.addEventListener("click", () => {
-    modalConfirmacionNotif.style.display = "none";
-  });
+  if (closeConfirmacionNotif) {
+    closeConfirmacionNotif.addEventListener("click", () => {
+      modalConfirmacionNotif.style.display = "none";
+    });
+  }
 
-  btnConfirmarSi.addEventListener("click", () => {
-    const distrito = selectDistritoNotif.value;
+  if (btnConfirmarSi) {
+    btnConfirmarSi.addEventListener("click", () => {
+      const distrito = selectDistritoNotif.value;
 
-    alert(`✔ Notificaciones activadas.\nRecibirás alertas por SMS cuando se detecte agua no segura en ${distrito}.`);
+      alert(`✔ Notificaciones activadas.\nRecibirás alertas por SMS cuando se detecte agua no segura en ${distrito}.`);
 
-    modalNotifPersonalizadas.style.display = "none";
-    modalConfirmacionNotif.style.display = "none";
-  });
+      modalNotifPersonalizadas.style.display = "none";
+      modalConfirmacionNotif.style.display = "none";
+    });
+  }
 
-  btnConfirmarNo.addEventListener("click", () => {
-    modalConfirmacionNotif.style.display = "none";
-  });
+  if (btnConfirmarNo) {
+    btnConfirmarNo.addEventListener("click", () => {
+      modalConfirmacionNotif.style.display = "none";
+    });
+  }
 
+  // ====================================
   // FILTRO DE DISTRITOS
+  // ====================================
+
   const filtroDistrito = document.getElementById("filtroDistrito");
   const listaAlertas = document.getElementById("alertasList");
 
-  filtroDistrito.addEventListener("change", () => {
-    filtrarAlertas();
-  });
+  if (filtroDistrito) {
+    filtroDistrito.addEventListener("change", () => {
+      filtrarAlertas();
+    });
+  }
 
   function filtrarAlertas() {
     const distritoSeleccionado = filtroDistrito.value;
@@ -91,21 +113,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ====================================
   // RECOMENDACIÓN DEL DÍA
+  // ====================================
+
   const modalRecomendacion = document.getElementById("modalRecomendacion");
   const btnRecomendacion = document.getElementById("btnRecomendacion");
   const closeRecomendacion = document.getElementById("closeRecomendacion");
 
-  btnRecomendacion.addEventListener("click", () => {
-    document.getElementById("textoRecomendacion").textContent =
-      "Hierve el agua durante al menos 1 minuto para eliminar microorganismos. Almacénala en envases limpios y tapados.";
+  if (btnRecomendacion) {
+    btnRecomendacion.addEventListener("click", () => {
+      document.getElementById("textoRecomendacion").textContent =
+        "Hierve el agua durante al menos 1 minuto para eliminar microorganismos. Almacénala en envases limpios y tapados.";
 
-    modalRecomendacion.style.display = "flex";
-  });
+      modalRecomendacion.style.display = "flex";
+    });
+  }
 
-  closeRecomendacion.addEventListener("click", () => {
-    modalRecomendacion.style.display = "none";
-  });
+  if (closeRecomendacion) {
+    closeRecomendacion.addEventListener("click", () => {
+      modalRecomendacion.style.display = "none";
+    });
+  }
 
   window.addEventListener("click", (e) => {
     if (e.target === modalRecomendacion) {
@@ -113,45 +142,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+
+  // ====================================
   // NOTIFICACIONES PRINCIPALES
+  // ====================================
+
   const modalNot = document.getElementById("modalNotificaciones");
   const btnNot = document.getElementById("btnNotificaciones");
   const closeNot = document.getElementById("closeNotificaciones");
   const btnSiNot = document.getElementById("btnSiNotificaciones");
   const btnNoNot = document.getElementById("btnNoNotificaciones");
 
-  btnNot.addEventListener("click", () => {
-    modalNot.style.display = "flex";
-  });
+  if (btnNot) {
+    btnNot.addEventListener("click", () => {
+      modalNot.style.display = "flex";
+    });
+  }
 
-  closeNot.addEventListener("click", () => {
-    modalNot.style.display = "none";
-  });
-
-  btnSiNot.addEventListener("click", () => {
-    alert("Has elegido recibir notificaciones.");
-    modalNot.style.display = "none";
-  });
-
-  btnNoNot.addEventListener("click", () => {
-    alert("Has elegido no recibir notificaciones.");
-    modalNot.style.display = "none";
-  });
-
-  window.addEventListener("click", (e) => {
-    if (e.target === modalNot) {
+  if (closeNot) {
+    closeNot.addEventListener("click", () => {
       modalNot.style.display = "none";
-    }
-  });
+    });
+  }
 
+  if (btnSiNot) {
+    btnSiNot.addEventListener("click", () => {
+      alert("Has elegido recibir notificaciones.");
+      modalNot.style.display = "none";
+    });
+  }
+
+  if (btnNoNot) {
+    btnNoNot.addEventListener("click", () => {
+      alert("Has elegido no recibir notificaciones.");
+      modalNot.style.display = "none";
+    });
+  }
+
+
+  // ====================================
   // USUARIO LOGUEADO
+  // ====================================
+
   const nombreActivo = localStorage.getItem("usuarioActivo");
   const authButtons = document.getElementById("auth-buttons");
   const profileButton = document.getElementById("profile-button");
 
   if (nombreActivo) {
-    authButtons.style.display = "none";
-    profileButton.style.display = "block";
+    if (authButtons) authButtons.style.display = "none";
+    if (profileButton) profileButton.style.display = "block";
     document.getElementById("btnPerfil").textContent = nombreActivo;
 
     const profileMenu = document.getElementById("profile-menu");
@@ -159,21 +198,26 @@ document.addEventListener("DOMContentLoaded", () => {
       profileMenu.classList.toggle("show");
     });
 
-    document.getElementById("cerrarSesion").addEventListener("click", () => {
-      localStorage.removeItem("usuarioActivo");
-      window.location.href = "index.html";
-    });
+    const logout = document.getElementById("cerrarSesion");
+    if (logout) {
+      logout.addEventListener("click", () => {
+        localStorage.removeItem("usuarioActivo");
+        window.location.href = "index.html";
+      });
+    }
   }
 
-  // ALERTAS
+  // ====================================
+  // ALERTAS (con estados)
+  // ====================================
+
   let alertas = [
     {
       titulo: "Niveles bajos de cloro residual",
       lugar: "San Juan de Lurigancho",
       fecha: "05/10/2025",
       hora: "07:45 a.m.",
-      descripcion:
-        "Se detectó un nivel de cloro inferior al recomendado, se recomienda hervir el agua antes de consumir.",
+      descripcion: "Se detectó un nivel de cloro inferior al recomendado.",
       estado: "En proceso"
     },
     {
@@ -181,8 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
       lugar: "Villa El Salvador",
       fecha: "05/10/2025",
       hora: "10:00 a.m. - 8:00 p.m.",
-      descripcion:
-        "Corte programado por mantenimiento de la red de distribución.",
+      descripcion: "Corte por mantenimiento.",
       estado: "Terminado"
     },
     {
@@ -190,18 +233,8 @@ document.addEventListener("DOMContentLoaded", () => {
       lugar: "Comas",
       fecha: "06/10/2025",
       hora: "04:30 p.m.",
-      descripcion:
-        "Se observó agua con turbidez, evite consumir directamente.",
+      descripcion: "Evita consumir directamente.",
       estado: "Solucionado"
-    },
-    {
-      titulo: "Reporte ciudadano confirmado",
-      lugar: "San Martín de Porres",
-      fecha: "06/10/2025",
-      hora: "06:25 a.m.",
-      descripcion:
-        "Reporte de coloración del agua confirmado por la supervisión local.",
-      estado: "En proceso"
     },
   ];
 
@@ -247,84 +280,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderAlertas();
 
+  // ====================================
   // AGREGAR NUEVA ALERTA
+  // ====================================
+
   const modal = document.getElementById("modalAlerta");
   const btnAdd = document.getElementById("btnAddAlerta");
   const spanClose = document.querySelector(".modal .close");
   const formAlerta = document.getElementById("formAlerta");
   const mensajeForm = document.getElementById("mensajeForm");
 
-  btnAdd.addEventListener("click", () => {
-    modal.style.display = "flex";
-    mensajeForm.textContent = "";
-  });
+  if (btnAdd) {
+    btnAdd.addEventListener("click", () => {
+      modal.style.display = "flex";
+      mensajeForm.textContent = "";
+    });
+  }
 
-  spanClose.addEventListener("click", () => {
-    modal.style.display = "none";
-  });
+  if (spanClose) {
+    spanClose.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  }
 
   window.addEventListener("click", (e) => {
     if (e.target == modal) modal.style.display = "none";
   });
 
-  formAlerta.addEventListener("submit", (e) => {
-    e.preventDefault();
+  if (formAlerta) {
+    formAlerta.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-    const titulo = document.getElementById("titulo").value.trim();
-    const lugar = document.getElementById("lugar").value.trim();
-    const fecha = document.getElementById("fecha").value.trim();
-    const hora = document.getElementById("hora").value.trim();
-    const descripcion = document.getElementById("descripcion").value.trim();
+      const titulo = document.getElementById("titulo").value.trim();
+      const lugar = document.getElementById("lugar").value.trim();
+      const fecha = document.getElementById("fecha").value.trim();
+      const hora = document.getElementById("hora").value.trim();
+      const descripcion = document.getElementById("descripcion").value.trim();
 
-    if (!titulo || !lugar || !fecha || !hora || !descripcion) {
-      mensajeForm.textContent = "Por favor, rellena todos los campos.";
-      mensajeForm.style.color = "red";
-    } else {
-      alertas.push({
-        titulo,
-        lugar,
-        fecha,
-        hora,
-        descripcion,
-        estado: "En proceso"
-      });
+      if (!titulo || !lugar || !fecha || !hora || !descripcion) {
+        mensajeForm.textContent = "Por favor, rellena todos los campos.";
+        mensajeForm.style.color = "red";
+      } else {
+        alertas.push({
+          titulo,
+          lugar,
+          fecha,
+          hora,
+          descripcion,
+          estado: "En proceso"
+        });
 
-      renderAlertas();
+        renderAlertas();
 
-      mensajeForm.textContent = "¡Alerta guardada correctamente!";
-      mensajeForm.style.color = "green";
-      formAlerta.reset();
+        mensajeForm.textContent = "¡Alerta guardada correctamente!";
+        mensajeForm.style.color = "green";
+        formAlerta.reset();
 
-      setTimeout(() => (modal.style.display = "none"), 1000);
-    }
-  });
-
-  document.getElementById("btnAtras")
-    .addEventListener("click", () => window.history.back());
-
-  // FOOTER USER
-  if (nombreActivo) {
-    const footerUserSection = document.getElementById("footer-user-section");
-    footerUserSection.innerHTML = `
-      <h4 class="active">Perfil de ${nombreActivo}</h4>
-      <ul>
-        <li><a href="Perfil.html">Ver Perfil</a></li>
-        <li><a href="#" id="cerrarSesionFooter">Cerrar Sesión</a></li>
-      </ul>
-    `;
-
-    document
-      .getElementById("cerrarSesionFooter")
-      .addEventListener("click", (e) => {
-        e.preventDefault();
-        localStorage.removeItem("usuarioActivo");
-        window.location.href = "index.html";
-      });
+        setTimeout(() => (modal.style.display = "none"), 1000);
+      }
+    });
   }
 
-  // ============================
-  // CONFIGURAR PREFERENCIAS ★ NUEVO
-  // ============================
+  // ====================================
+  // PREFERENCIAS (LO QUE NO TE FUNCIONABA)
+  // ====================================
 
   const btnConfigPreferencias = document.getElementById("btnConfigPreferencias");
   const modalPreferencias = document.getElementById("modalPreferencias");
@@ -340,48 +359,62 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnPrefSi = document.getElementById("btnPrefSi");
   const btnPrefNo = document.getElementById("btnPrefNo");
 
-  // Abrir modal
-  btnConfigPreferencias.addEventListener("click", () => {
-    modalPreferencias.style.display = "flex";
-  });
+  // abrir preferencias
+  if (btnConfigPreferencias) {
+    btnConfigPreferencias.addEventListener("click", () => {
+      modalPreferencias.style.display = "flex";
+    });
+  }
 
-  // Cerrar modal
-  closePreferencias.addEventListener("click", () => {
-    modalPreferencias.style.display = "none";
-  });
+  // cerrar
+  if (closePreferencias) {
+    closePreferencias.addEventListener("click", () => {
+      modalPreferencias.style.display = "none";
+    });
+  }
 
-  // Guardar → abrir confirmación
-  btnGuardarPreferencias.addEventListener("click", () => {
-    modalConfirmPreferencias.style.display = "flex";
-  });
+  // guardar → mostrar confirmación
+  if (btnGuardarPreferencias) {
+    btnGuardarPreferencias.addEventListener("click", () => {
+      modalConfirmPreferencias.style.display = "flex";
+    });
+  }
 
-  // Confirmación cerrar
-  closeConfirmPreferencias.addEventListener("click", () => {
-    modalConfirmPreferencias.style.display = "none";
-  });
+  // cerrar confirmación
+  if (closeConfirmPreferencias) {
+    closeConfirmPreferencias.addEventListener("click", () => {
+      modalConfirmPreferencias.style.display = "none";
+    });
+  }
 
-  // SI
-  btnPrefSi.addEventListener("click", () => {
-    const tipo = selectTipoAlerta.value;
-    const frecuencia = selectFrecuencia.value;
+  // SI guardo
+  if (btnPrefSi) {
+    btnPrefSi.addEventListener("click", () => {
 
-    localStorage.setItem(
-      "preferenciasAlertas",
-      JSON.stringify({ tipo, frecuencia })
-    );
+      const tipo = selectTipoAlerta.value;
+      const frecuencia = selectFrecuencia.value;
 
-    alert(`✔ Preferencias guardadas.\nTipo: ${tipo}\nFrecuencia: ${frecuencia}`);
+      localStorage.setItem(
+        "preferenciasAlertas",
+        JSON.stringify({ tipo, frecuencia })
+      );
 
-    modalPreferencias.style.display = "none";
-    modalConfirmPreferencias.style.display = "none";
-  });
+      alert(`✔ Preferencias guardadas.\nTipo: ${tipo}\nFrecuencia: ${frecuencia}`);
 
-  // NO
-  btnPrefNo.addEventListener("click", () => {
-    modalConfirmPreferencias.style.display = "none";
-  });
+      modalPreferencias.style.display = "none";
+      modalConfirmPreferencias.style.display = "none";
+    });
+  }
+
+  // NO cancelar
+  if (btnPrefNo) {
+    btnPrefNo.addEventListener("click", () => {
+      modalConfirmPreferencias.style.display = "none";
+    });
+  }
 
 });
+
 
 
 
