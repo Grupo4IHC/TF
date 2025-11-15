@@ -1,151 +1,157 @@
-//Notificaciones Personalizadas
+//  MENÚ HAMBURGUESA
+const hamburger = document.getElementById("hamburger");
+const nav = document.querySelector(".nav");
+const registrarBtn = document.querySelector(".btn-registrarse");
+const iniciarSesionBtn = document.querySelector(".btn-iniciarSesion");
 
-// Elementos
-const btnNotifPersonalizadas = document.getElementById("btnNotifPersonalizadas");
-const modalNotifPersonalizadas = document.getElementById("modalNotifPersonalizadas");
-const closeNotifPersonalizadas = document.getElementById("closeNotifPersonalizadas");
+hamburger.addEventListener("click", () => {
+  nav.classList.toggle("nav-active");
+  registrarBtn.classList.toggle("nav-active");
+  iniciarSesionBtn.classList.toggle("nav-active");
 
-const btnConfirmarNotif = document.getElementById("btnConfirmarNotif");
-const selectDistritoNotif = document.getElementById("selectDistritoNotif");
-
-// Modal de confirmación
-const modalConfirmacionNotif = document.getElementById("modalConfirmacionNotif");
-const closeConfirmacionNotif = document.getElementById("closeConfirmacionNotif");
-const btnConfirmarSi = document.getElementById("btnConfirmarSi");
-const btnConfirmarNo = document.getElementById("btnConfirmarNo");
-
-// Abrir modal principal
-btnNotifPersonalizadas.addEventListener("click", () => {
-  modalNotifPersonalizadas.style.display = "flex";
+  hamburger.classList.toggle("open");
+  if (hamburger.classList.contains("open")) {
+    hamburger.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+  } else {
+    hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }
 });
 
-// Cerrar modal principal
-closeNotifPersonalizadas.addEventListener("click", () => {
-  modalNotifPersonalizadas.style.display = "none";
-});
+//    ESPERAR A QUE EL HTML CARGUE
+document.addEventListener("DOMContentLoaded", () => {
 
-// Click en botón de confirmar
-btnConfirmarNotif.addEventListener("click", () => {
-  if (!selectDistritoNotif.value) {
-    alert("Por favor selecciona un distrito.");
-    return;
+  //  NOTIFICACIONES PERSONALIZADAS
+  const btnNotifPersonalizadas = document.getElementById("btnNotifPersonalizadas");
+  const modalNotifPersonalizadas = document.getElementById("modalNotifPersonalizadas");
+  const closeNotifPersonalizadas = document.getElementById("closeNotifPersonalizadas");
+
+  const btnConfirmarNotif = document.getElementById("btnConfirmarNotif");
+  const selectDistritoNotif = document.getElementById("selectDistritoNotif");
+
+  const modalConfirmacionNotif = document.getElementById("modalConfirmacionNotif");
+  const closeConfirmacionNotif = document.getElementById("closeConfirmacionNotif");
+  const btnConfirmarSi = document.getElementById("btnConfirmarSi");
+  const btnConfirmarNo = document.getElementById("btnConfirmarNo");
+
+  // Abrir ventana principal
+  btnNotifPersonalizadas.addEventListener("click", () => {
+    modalNotifPersonalizadas.style.display = "flex";
+  });
+
+  // Cerrar ventana principal
+  closeNotifPersonalizadas.addEventListener("click", () => {
+    modalNotifPersonalizadas.style.display = "none";
+  });
+
+  // Confirmar distrito
+  btnConfirmarNotif.addEventListener("click", () => {
+    if (!selectDistritoNotif.value) {
+      alert("Por favor selecciona un distrito.");
+      return;
+    }
+
+    modalConfirmacionNotif.style.display = "flex";
+  });
+
+  // Cerrar confirmación
+  closeConfirmacionNotif.addEventListener("click", () => {
+    modalConfirmacionNotif.style.display = "none";
+  });
+
+  // Confirmar "Sí"
+  btnConfirmarSi.addEventListener("click", () => {
+    const distrito = selectDistritoNotif.value;
+
+    alert(`✔ Notificaciones activadas.\nRecibirás alertas por SMS cuando se detecte agua no segura en ${distrito}.`);
+
+    modalNotifPersonalizadas.style.display = "none";
+    modalConfirmacionNotif.style.display = "none";
+  });
+
+  // Confirmar "No"
+  btnConfirmarNo.addEventListener("click", () => {
+    modalConfirmacionNotif.style.display = "none";
+  });
+
+  //     FILTRO DE DISTRITOS
+  const filtroDistrito = document.getElementById("filtroDistrito");
+  const listaAlertas = document.getElementById("alertasList");
+
+  filtroDistrito.addEventListener("change", () => {
+    filtrarAlertas();
+  });
+
+  function filtrarAlertas() {
+    const distritoSeleccionado = filtroDistrito.value;
+    const tarjetas = document.querySelectorAll(".alerta-card");
+
+    tarjetas.forEach(card => {
+      const lugar = card.querySelector(".alerta-lugar").textContent.trim();
+
+      if (distritoSeleccionado === "todos") {
+        card.style.display = "flex";
+      } else if (lugar === distritoSeleccionado) {
+        card.style.display = "flex";
+      } else {
+        card.style.display = "none";
+      }
+    });
   }
 
-  // Abrir segundo modal
-  modalConfirmacionNotif.style.display = "flex";
-});
+  //   RECOMENDACIÓN DEL DÍA
+  const modalRecomendacion = document.getElementById("modalRecomendacion");
+  const btnRecomendacion = document.getElementById("btnRecomendacion");
+  const closeRecomendacion = document.getElementById("closeRecomendacion");
 
-// Cerrar modal confirmación
-closeConfirmacionNotif.addEventListener("click", () => {
-  modalConfirmacionNotif.style.display = "none";
-});
+  btnRecomendacion.addEventListener("click", () => {
+    document.getElementById("textoRecomendacion").textContent =
+      "Hierve el agua durante al menos 1 minuto para eliminar microorganismos. Almacénala en envases limpios y tapados.";
 
-// Acción Si
-btnConfirmarSi.addEventListener("click", () => {
-  const distrito = selectDistritoNotif.value;
+    modalRecomendacion.style.display = "flex";
+  });
 
-  alert(`✔ Notificaciones activadas.\nRecibirás alertas por SMS cuando se detecte agua no segura en ${distrito}.`);
+  closeRecomendacion.addEventListener("click", () => {
+    modalRecomendacion.style.display = "none";
+  });
 
-  modalNotifPersonalizadas.style.display = "none";
-  modalConfirmacionNotif.style.display = "none";
-});
-
-// Acción No
-btnConfirmarNo.addEventListener("click", () => {
-  modalConfirmacionNotif.style.display = "none";
-});
-
-
-const filtroDistrito = document.getElementById("filtroDistrito");
-const listaAlertas = document.getElementById("alertasList");
-
-// Filtrar cuando cambia el selector
-filtroDistrito.addEventListener("change", () => {
-  filtrarAlertas();
-});
-
-// Función de filtrado
-function filtrarAlertas() {
-  const distritoSeleccionado = filtroDistrito.value;
-
-  // Tomar todas las tarjetas de alerta
-  const tarjetas = document.querySelectorAll(".alerta-card");
-
-  tarjetas.forEach(card => {
-    const lugar = card.querySelector(".alerta-lugar").textContent.trim();
-
-    if (distritoSeleccionado === "todos") {
-      card.style.display = "flex";
-    } else if (lugar === distritoSeleccionado) {
-      card.style.display = "flex";
-    } else {
-      card.style.display = "none";
+  window.addEventListener("click", (e) => {
+    if (e.target === modalRecomendacion) {
+      modalRecomendacion.style.display = "none";
     }
   });
-}
 
+  //  NOTIFICACIONES PRINCIPALES
+  const modalNot = document.getElementById("modalNotificaciones");
+  const btnNot = document.getElementById("btnNotificaciones");
+  const closeNot = document.getElementById("closeNotificaciones");
+  const btnSiNot = document.getElementById("btnSiNotificaciones");
+  const btnNoNot = document.getElementById("btnNoNotificaciones");
 
-// --- Modal Recomendación del Día ---
-const modalRecomendacion = document.getElementById("modalRecomendacion");
-const btnRecomendacion = document.getElementById("btnRecomendacion");
-const closeRecomendacion = document.getElementById("closeRecomendacion");
+  btnNot.addEventListener("click", () => {
+    modalNot.style.display = "flex";
+  });
 
-btnRecomendacion.addEventListener("click", () => {
-  document.getElementById("textoRecomendacion").textContent =
-    "Hierve el agua durante al menos 1 minuto para eliminar microorganismos. Almacénala en envases limpios y tapados.";
-
-  modalRecomendacion.style.display = "flex";
-});
-
-closeRecomendacion.addEventListener("click", () => {
-  modalRecomendacion.style.display = "none";
-});
-
-window.addEventListener("click", (e) => {
-  if (e.target === modalRecomendacion) {
-    modalRecomendacion.style.display = "none";
-  }
-});
-
-
-// ----- MODAL NOTIFICACIONES -----
-const modalNot = document.getElementById("modalNotificaciones");
-const btnNot = document.getElementById("btnNotificaciones");
-const closeNot = document.getElementById("closeNotificaciones");
-const btnSiNot = document.getElementById("btnSiNotificaciones");
-const btnNoNot = document.getElementById("btnNoNotificaciones");
-
-// Abrir popup
-btnNot.addEventListener("click", () => {
-  modalNot.style.display = "flex";
-});
-
-// Cerrar con X
-closeNot.addEventListener("click", () => {
-  modalNot.style.display = "none";
-});
-
-// Cerrar con botón SI
-btnSiNot.addEventListener("click", () => {
-  alert("Has elegido recibir notificaciones.");
-  modalNot.style.display = "none";
-});
-
-// Cerrar con botón NO
-btnNoNot.addEventListener("click", () => {
-  alert("Has elegido no recibir notificaciones.");
-  modalNot.style.display = "none";
-});
-
-// Cerrar si hace click fuera
-window.addEventListener("click", (e) => {
-  if (e.target === modalNot) {
+  closeNot.addEventListener("click", () => {
     modalNot.style.display = "none";
-  }
-});
+  });
 
+  btnSiNot.addEventListener("click", () => {
+    alert("Has elegido recibir notificaciones.");
+    modalNot.style.display = "none";
+  });
 
-document.addEventListener("DOMContentLoaded", () => {
+  btnNoNot.addEventListener("click", () => {
+    alert("Has elegido no recibir notificaciones.");
+    modalNot.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modalNot) {
+      modalNot.style.display = "none";
+    }
+  });
+
+  //     USUARIO LOGUEADO
   const nombreActivo = localStorage.getItem("usuarioActivo");
   const authButtons = document.getElementById("auth-buttons");
   const profileButton = document.getElementById("profile-button");
@@ -154,17 +160,19 @@ document.addEventListener("DOMContentLoaded", () => {
     authButtons.style.display = "none";
     profileButton.style.display = "block";
     document.getElementById("btnPerfil").textContent = nombreActivo;
+
     const profileMenu = document.getElementById("profile-menu");
     document.getElementById("btnPerfil").addEventListener("click", () => {
       profileMenu.classList.toggle("show");
     });
+
     document.getElementById("cerrarSesion").addEventListener("click", () => {
       localStorage.removeItem("usuarioActivo");
       window.location.href = "index.html";
     });
   }
 
-  // ALERTAS CON ESTADO INCORPORADO
+  //          ALERTAS
   let alertas = [
     {
       titulo: "Niveles bajos de cloro residual",
@@ -189,7 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
       lugar: "Comas",
       fecha: "06/10/2025",
       hora: "04:30 p.m.",
-      descripcion: "Se observó agua con turbidez, evite consumir directamente.",
+      descripcion:
+        "Se observó agua con turbidez, evite consumir directamente.",
       estado: "Solucionado"
     },
     {
@@ -209,7 +218,6 @@ document.addEventListener("DOMContentLoaded", () => {
     alertasList.innerHTML = "";
     alertas.forEach((a) => {
 
-      // Asegurar que todas tengan estado
       if (!a.estado) a.estado = "En proceso";
 
       const div = document.createElement("div");
@@ -246,7 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderAlertas();
 
-  // Modal
+  //    AGREGAR NUEVA ALERTA
   const modal = document.getElementById("modalAlerta");
   const btnAdd = document.getElementById("btnAddAlerta");
   const spanClose = document.querySelector(".modal .close");
@@ -285,7 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fecha,
         hora,
         descripcion,
-        estado: "En proceso"   // Todas las nuevas EN PROCESO
+        estado: "En proceso"   // todas empiezan en proceso
       });
 
       renderAlertas();
@@ -298,11 +306,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Botón volver
+
   document.getElementById("btnAtras")
     .addEventListener("click", () => window.history.back());
 
-  // Footer dinámico
+
   if (nombreActivo) {
     const footerUserSection = document.getElementById("footer-user-section");
     footerUserSection.innerHTML = `
@@ -321,27 +329,10 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "index.html";
       });
   }
+
 });
 
 
-// ----- MENÚ HAMBURGUESA -----
-const hamburger = document.getElementById("hamburger");
-const nav = document.querySelector(".nav");
-const registrarBtn = document.querySelector(".btn-registrarse");
-const iniciarSesionBtn = document.querySelector(".btn-iniciarSesion");
-
-hamburger.addEventListener("click", () => {
-  nav.classList.toggle("nav-active");
-  registrarBtn.classList.toggle("nav-active");
-  iniciarSesionBtn.classList.toggle("nav-active");
-
-  hamburger.classList.toggle("open");
-  if (hamburger.classList.contains("open")) {
-    hamburger.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-  } else {
-    hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
-  }
-});
 
 
 
