@@ -134,6 +134,17 @@ setInterval(() => {
   });
 }, 1000);
 
+// BOTÓN TUTORIAL LIMPIEZA DE CISTERNAS
+const btnTutorialCisterna = document.getElementById("btnTutorialCisterna");
+
+if (btnTutorialCisterna) {
+  btnTutorialCisterna.addEventListener("click", () => {
+    // Reemplaza el link por el tutorial que quieras
+    window.open("https://www.youtube.com/watch?v=tuVideoID", "_blank");
+  });
+}
+
+
 // ----- MENÚ HAMBURGUESA -----
 const hamburger = document.getElementById("hamburger");
 const nav = document.querySelector(".nav");
@@ -154,3 +165,4 @@ hamburger.addEventListener("click", () => {
     hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
   }
 });
+
