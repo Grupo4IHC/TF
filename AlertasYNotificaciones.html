@@ -96,20 +96,24 @@
         <h2>Crear Nueva Alerta</h2>
 
         <form id="formAlerta">
-          <input type="text" id="titulo" placeholder="Título de la alerta" />
-          <input type="text" id="lugar" placeholder="Lugar" />
-          <input type="date" id="fecha" />
-          <input type="time" id="hora" />
+  <input type="text" id="titulo" placeholder="Título de la alerta" />
+  <input type="text" id="lugar" placeholder="Lugar" />
+  <input type="date" id="fecha" />
+  <input type="time" id="hora" />
 
-          <textarea
-            id="descripcion"
-            placeholder="Descripción de la alerta"
-            rows="3"
-          ></textarea>
+  <textarea id="descripcion" placeholder="Descripción de la alerta" rows="3"></textarea>
 
-          <button type="submit" class="btn btn-add">Guardar Alerta</button>
-          <p id="mensajeForm" class="mensaje"></p>
-        </form>
+  <!-- Subir foto -->
+  <label class="label-img">Adjuntar evidencia (opcional):</label>
+  <input type="file" id="imagenAlerta" accept="image/*" />
+
+  <!-- Vista previa -->
+  <img id="previewImagen" style="display:none; margin-top:10px; width:100%; border-radius:8px;" />
+
+  <button type="submit" class="btn btn-add">Guardar Alerta</button>
+  <p id="mensajeForm" class="mensaje"></p>
+</form>
+
       </div>
     </div>
 
@@ -296,6 +300,7 @@
     <script src="assets/scripts/Alertas.js"></script>
   </body>
 </html>
+
 
 
 
