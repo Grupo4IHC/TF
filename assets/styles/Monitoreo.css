@@ -1,3 +1,27 @@
+.btns-mapa {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap; /* Para que se acomode en celular */
+}
+
+#btnTutorialCisterna {
+  background-color: #004aad;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+#btnTutorialCisterna:hover {
+  background-color: #00337a;
+}
+
+
 .titulo-mapa {
   padding: 200px 30px 50px;
   text-align: center;
@@ -98,3 +122,4 @@
     font-size: 0.85rem;
   }
 }
+
