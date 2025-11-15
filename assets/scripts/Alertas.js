@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnConfirmarNo = document.getElementById("btnConfirmarNo");
 
   if (btnNotifPersonalizadas) {
-    btnNotifPersonalizadas.Listener("click", () => {
+    btnNotifPersonalizadas.addEventListener("click", () => {
       modalNotifPersonalizadas.style.display = "flex";
     });
   }
@@ -269,13 +269,10 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       div.addEventListener("click", () => {
-  alert(
-    `Detalles de la alerta:\n\nTítulo: ${a.titulo}\nLugar: ${a.lugar}\nFecha: ${a.fecha}\nHora: ${a.hora}\nEstado: ${a.estado}\n\nDescripción: ${a.descripcion}`
-  );
-});
-
-
-
+        alert(
+          `Detalles de la alerta:\n\nTítulo: ${a.titulo}\nLugar: ${a.lugar}\nFecha: ${a.fecha}\nHora: ${a.hora}\nEstado: ${a.estado}\n\nDescripción: ${a.descripcion}`
+        );
+      });
 
       alertasList.appendChild(div);
     });
@@ -283,77 +280,66 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderAlertas();
 
+  // ====================================
   // AGREGAR NUEVA ALERTA
-const modal = document.getElementById("modalAlerta");
-const btnAdd = document.getElementById("btnAddAlerta");
-const spanClose = document.querySelector(".modal .close");
-const formAlerta = document.getElementById("formAlerta");
-const mensajeForm = document.getElementById("mensajeForm");
-const inputImagen = document.getElementById("imagen");
+  // ====================================
 
-btnAdd.addEventListener("click", () => {
-  modal.style.display = "flex";
-  mensajeForm.textContent = "";
-});
+  const modal = document.getElementById("modalAlerta");
+  const btnAdd = document.getElementById("btnAddAlerta");
+  const spanClose = document.querySelector(".modal .close");
+  const formAlerta = document.getElementById("formAlerta");
+  const mensajeForm = document.getElementById("mensajeForm");
 
-spanClose.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-// Cerrar al hacer clic afuera
-window.addEventListener("click", (e) => {
-  if (e.target == modal) modal.style.display = "none";
-});
-
-// Convertir imagen a Base64
-function convertirBase64(file) {
-  return new Promise((resolve) => {
-    const lector = new FileReader();
-    lector.onloadend = () => resolve(lector.result);
-    lector.readAsDataURL(file);
-  });
-}
-
-formAlerta.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const titulo = document.getElementById("titulo").value.trim();
-  const lugar = document.getElementById("lugar").value.trim();
-  const fecha = document.getElementById("fecha").value.trim();
-  const hora = document.getElementById("hora").value.trim();
-  const descripcion = document.getElementById("descripcion").value.trim();
-
-  let evidencia = null;
-
-  if (!titulo || !lugar || !fecha || !hora || !descripcion) {
-    mensajeForm.textContent = "Por favor, rellena todos los campos.";
-    mensajeForm.style.color = "red";
-    return;
+  if (btnAdd) {
+    btnAdd.addEventListener("click", () => {
+      modal.style.display = "flex";
+      mensajeForm.textContent = "";
+    });
   }
 
-  // Si el usuario subió una imagen, convertirla
-  if (inputImagen.files.length > 0) {
-    evidencia = await convertirBase64(inputImagen.files[0]);
+  if (spanClose) {
+    spanClose.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
   }
 
-  alertas.push({
-    titulo,
-    lugar,
-    fecha,
-    hora,
-    descripcion,
-    evidencia,
-    estado: "En proceso"
+  window.addEventListener("click", (e) => {
+    if (e.target == modal) modal.style.display = "none";
   });
 
-  renderAlertas();
+  if (formAlerta) {
+    formAlerta.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-  mensajeForm.textContent = "¡Alerta guardada correctamente!";
-  mensajeForm.style.color = "green";
-  formAlerta.reset();
+      const titulo = document.getElementById("titulo").value.trim();
+      const lugar = document.getElementById("lugar").value.trim();
+      const fecha = document.getElementById("fecha").value.trim();
+      const hora = document.getElementById("hora").value.trim();
+      const descripcion = document.getElementById("descripcion").value.trim();
 
-  setTimeout(() => (modal.style.display = "none"), 1000);
-});
+      if (!titulo || !lugar || !fecha || !hora || !descripcion) {
+        mensajeForm.textContent = "Por favor, rellena todos los campos.";
+        mensajeForm.style.color = "red";
+      } else {
+        alertas.push({
+          titulo,
+          lugar,
+          fecha,
+          hora,
+          descripcion,
+          estado: "En proceso"
+        });
+
+        renderAlertas();
+
+        mensajeForm.textContent = "¡Alerta guardada correctamente!";
+        mensajeForm.style.color = "green";
+        formAlerta.reset();
+
+        setTimeout(() => (modal.style.display = "none"), 1000);
+      }
+    });
+  }
 
   // ====================================
   // PREFERENCIAS (LO QUE NO TE FUNCIONABA)
