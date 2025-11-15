@@ -72,6 +72,7 @@
   <button class="btn btn-add" id="btnNotificaciones">Recibir Notificaciones</button>
   <button class="btn btn-add" id="btnRecomendacion">Recomendación del Día</button>
   <button class="btn btn-add" id="btnNotifPersonalizadas">Notificaciones Personalizadas</button>
+  <button class="btn btn-add" id="btnConfigPreferencias">Configurar Preferencias</button>
 </div>
       <div class="btns">
         <button class="btn btn-add" id="btnAddAlerta">+ Añadir Alerta</button>
@@ -177,6 +178,51 @@
   </div>
 </div>
 
+    <!-- Modal Configurar Preferencias -->
+<div id="modalPreferencias" class="modal">
+  <div class="modal-card">
+    <span class="close" id="closePreferencias">&times;</span>
+
+    <h2>Preferencias de Alertas</h2>
+    <p>Personaliza el tipo y la frecuencia de las alertas.</p>
+
+    <label><b>Tipos de alertas:</b></label>
+    <select id="selectTipoAlerta" class="filtro-select" style="margin-top: 10px;">
+      <option value="todas">Todas</option>
+      <option value="agua">Agua no segura</option>
+      <option value="corte">Cortes de servicio</option>
+      <option value="cloro">Niveles de cloro</option>
+      <option value="reporte">Reportes ciudadanos</option>
+    </select>
+
+    <label style="margin-top: 20px;"><b>Frecuencia:</b></label>
+    <select id="selectFrecuencia" class="filtro-select" style="margin-top: 10px;">
+      <option value="inmediata">Inmediata</option>
+      <option value="12h">Cada 12 horas</option>
+      <option value="diaria">Diaria</option>
+      <option value="semanal">Semanal</option>
+    </select>
+
+    <button id="btnGuardarPreferencias" class="btn btn-add" style="margin-top: 20px;">
+      Guardar Preferencias
+    </button>
+  </div>
+</div>
+
+<!-- Modal Confirmación Preferencias -->
+<div id="modalConfirmPreferencias" class="modal">
+  <div class="modal-card">
+    <span class="close" id="closeConfirmPreferencias">&times;</span>
+
+    <h2>¿Guardar cambios?</h2>
+    <p>¿Deseas guardar tus nuevas preferencias de alertas?</p>
+
+    <div style="display:flex; gap:1rem; justify-content:center; margin-top:20px;">
+      <button id="btnPrefSi" class="btn-choice btn-si">Sí</button>
+      <button id="btnPrefNo" class="btn-choice btn-no">No</button>
+    </div>
+  </div>
+</div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -239,6 +285,7 @@
     <script src="assets/scripts/Alertas.js"></script>
   </body>
 </html>
+
 
 
 
