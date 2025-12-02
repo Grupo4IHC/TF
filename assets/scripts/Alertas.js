@@ -530,4 +530,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // ==================================== // CONFIGURAR PREFERENCIAS // ==================================== 
+  const btnConfigPreferencias = document.getElementById( "btnConfigPreferencias" ); const modalPreferencias = document.getElementById("modalPreferencias"); const closePreferencias = document.getElementById("closePreferencias"); const selectTipoAlerta = document.getElementById("selectTipoAlerta"); const selectFrecuencia = document.getElementById("selectFrecuencia"); const btnGuardarPreferencias = document.getElementById( "btnGuardarPreferencias" ); const modalConfirmPreferencias = document.getElementById( "modalConfirmPreferencias" ); const btnPrefSi = document.getElementById("btnPrefSi"); const btnPrefNo = document.getElementById("btnPrefNo");
+  // Abrir modal de preferencias (cargando lo guardado si existe) 
+  btnConfigPreferencias?.addEventListener("click", () => { const prefs = JSON.parse( localStorage.getItem("preferenciasAlertas") || "{}" ); if (prefs.tipo) selectTipoAlerta.value = prefs.tipo; if (prefs.frecuencia) selectFrecuencia.value = prefs.frecuencia; modalPreferencias.style.display = "flex"; }); 
+  // Cerrar modal de preferencias 
+  closePreferencias?.addEventListener("click", () => { modalPreferencias.style.display = "none"; });
+  // Abrir confirmación de guardar 
+  btnGuardarPreferencias?.addEventListener("click", () => { modalConfirmPreferencias.style.display = "flex"; }); 
+  // Confirmar guardado
+  btnPrefSi?.addEventListener("click", () => { const preferencias = { tipo: selectTipoAlerta.value, frecuencia: selectFrecuencia.value, }; localStorage.setItem( "preferenciasAlertas", JSON.stringify(preferencias) ); alert( ✔ Preferencias guardadas.\nTipo: ${preferencias.tipo}\nFrecuencia: ${preferencias.frecuencia} ); modalPreferencias.style.display = "none"; modalConfirmPreferencias.style.display = "none"; }); 
+// Cancelar guardado 
+btnPrefNo?.addEventListener("click", () => { modalConfirmPreferencias.style.display = "none"; }); 
+// Cerrar modales de preferencias al hacer clic fuera
+window.addEventListener("click", (e) => { if (e.target === modalPreferencias) { modalPreferencias.style.display = "none"; } if (e.target === modalConfirmPreferencias) { modalConfirmPreferencias.style.display = "none"; } }); });
 });
+
