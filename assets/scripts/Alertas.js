@@ -262,20 +262,32 @@ function interpretarCalidadAgua(cloro, bacterias) {
 
       const interprete = interpretarCalidadAgua(a.cloro, a.bacterias);
       
-      div.innerHTML = `
-        <div class="alerta-info">
-          <i class="fa-regular fa-bell"></i>
-          <div class="alerta-text">
-            <p><b>Alerta:</b> ${a.titulo}</p>
-            <p><b>Lugar:</b> <span class="alerta-lugar">${a.lugar}</span></p>
-            <p><b>Fecha:</b> ${a.fecha}</p>
-            <p><b>Hora:</b> ${a.hora}</p>
-            ${a.imagen ? `<img src="${a.imagen}" class="alerta-img" />` : ""}
-            <p><b>Estado:</b> <span class="estado ${a.estado.replace(" ", "-").toLowerCase()}">${a.estado}</span></p>
-          </div>
+          div.innerHTML = `
+      <div class="alerta-info">
+        <i class="fa-regular fa-bell"></i>
+        <div class="alerta-text">
+          <p><b>Alerta:</b> ${a.titulo}</p>
+          <p><b>Lugar:</b> <span class="alerta-lugar">${a.lugar}</span></p>
+          <p><b>Fecha:</b> ${a.fecha}</p>
+          <p><b>Hora:</b> ${a.hora}</p>
+          ${a.imagen ? `<img src="${a.imagen}" class="alerta-img" />` : ""}
+
+          <!-- NUEVO: datos técnicos resumidos -->
+          <p class="datos-tecnicos">
+            Cloro: <b>${a.cloro} mg/L</b> · Bacterias: <b>${a.bacterias} NMP/100 mL</b>
+          </p>
+
+          <!-- NUEVO: frase simple con color -->
+          <p class="chip-calidad ${interprete.clase}">
+            ${interprete.texto}
+          </p>
+
+          <p><b>Estado:</b> <span class="estado ${a.estado.replace(" ", "-").toLowerCase()}">${a.estado}</span></p>
         </div>
-        <i class="fa-solid fa-arrow-right"></i>
-      `;
+      </div>
+      <i class="fa-solid fa-arrow-right"></i>
+    `;
+
 
       div.addEventListener("click", () => {
         alert(`Detalles de la alerta:\n\nTítulo: ${a.titulo}\nLugar: ${a.lugar}\nFecha: ${a.fecha}\nHora: ${a.hora}\nEstado: ${a.estado}\n\nDescripción: ${a.descripcion}`);
@@ -681,6 +693,7 @@ function interpretarCalidadAgua(cloro, bacterias) {
     }
   });
   });
+
 
 
 
