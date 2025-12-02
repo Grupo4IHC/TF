@@ -42,99 +42,98 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ====================================
-// ACTUALIZAR ESTADO DE INCIDENCIA
-// ====================================
-const modalEstado = document.getElementById("modalEstado");
-const closeEstado = document.getElementById("closeEstado");
-const tituloEstadoIncidencia = document.getElementById("tituloEstadoIncidencia");
-const selectEstadoIncidencia = document.getElementById("selectEstadoIncidencia");
-const inputResponsable = document.getElementById("inputResponsable");
-const btnGuardarEstado = document.getElementById("btnGuardarEstado");
+  // ACTUALIZAR ESTADO DE INCIDENCIA
+  // ====================================
+  const modalEstado = document.getElementById("modalEstado");
+  const closeEstado = document.getElementById("closeEstado");
+  const tituloEstadoIncidencia = document.getElementById("tituloEstadoIncidencia");
+  const selectEstadoIncidencia = document.getElementById("selectEstadoIncidencia");
+  const inputResponsable = document.getElementById("inputResponsable");
+  const btnGuardarEstado = document.getElementById("btnGuardarEstado");
 
-let indiceEstadoSeleccionado = null;
+  let indiceEstadoSeleccionado = null;
 
-// Abrir modal desde botón "Actualizar estado"
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("btn-estado")) {
-    e.stopPropagation();
-    indiceEstadoSeleccionado = e.target.dataset.index;
-    const a = alertas[indiceEstadoSeleccionado];
+  // Abrir modal desde botón "Actualizar estado"
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-estado")) {
+      e.stopPropagation();
+      indiceEstadoSeleccionado = e.target.dataset.index;
+      const a = alertas[indiceEstadoSeleccionado];
 
-    tituloEstadoIncidencia.textContent = `Alerta: ${a.titulo} - ${a.lugar}`;
-    selectEstadoIncidencia.value = a.estado;
-    inputResponsable.value = a.responsable && a.responsable !== "No asignado"
-      ? a.responsable
-      : "";
+      tituloEstadoIncidencia.textContent = `Alerta: ${a.titulo} - ${a.lugar}`;
+      selectEstadoIncidencia.value = a.estado;
+      inputResponsable.value = a.responsable && a.responsable !== "No asignado"
+        ? a.responsable
+        : "";
 
-    modalEstado.style.display = "flex";
-  }
-});
+      modalEstado.style.display = "flex";
+    }
+  });
 
-// Cerrar modal
-closeEstado?.addEventListener("click", () => {
-  modalEstado.style.display = "none";
-});
-
-// Cerrar clic fuera
-window.addEventListener("click", (e) => {
-  if (e.target === modalEstado) {
+  // Cerrar modal
+  closeEstado?.addEventListener("click", () => {
     modalEstado.style.display = "none";
-  }
-});
+  });
 
-// Guardar cambios
-btnGuardarEstado?.addEventListener("click", () => {
-  if (indiceEstadoSeleccionado === null) return;
+  // Cerrar clic fuera
+  window.addEventListener("click", (e) => {
+    if (e.target === modalEstado) {
+      modalEstado.style.display = "none";
+    }
+  });
 
-  const nuevoEstado = selectEstadoIncidencia.value;
-  const nuevoResponsable = inputResponsable.value.trim() || "No asignado";
+  // Guardar cambios
+  btnGuardarEstado?.addEventListener("click", () => {
+    if (indiceEstadoSeleccionado === null) return;
 
-  alertas[indiceEstadoSeleccionado].estado = nuevoEstado;
-  alertas[indiceEstadoSeleccionado].responsable = nuevoResponsable;
-  alertas[indiceEstadoSeleccionado].fechaActualizacion =
-    new Date().toLocaleString("es-PE");
+    const nuevoEstado = selectEstadoIncidencia.value;
+    const nuevoResponsable = inputResponsable.value.trim() || "No asignado";
 
-  renderAlertas();
-  modalEstado.style.display = "none";
+    alertas[indiceEstadoSeleccionado].estado = nuevoEstado;
+    alertas[indiceEstadoSeleccionado].responsable = nuevoResponsable;
+    alertas[indiceEstadoSeleccionado].fechaActualizacion =
+      new Date().toLocaleString("es-PE");
 
-  alert("✅ Estado de la incidencia actualizado correctamente.");
-});
+    renderAlertas();
+    modalEstado.style.display = "none";
 
-  
+    alert("✅ Estado de la incidencia actualizado correctamente.");
+  });
+
   // ==========================================================
-// COMPARTIR ALERTA ENTRE ENTIDADES
-// ==========================================================
-const modalCompartir = document.getElementById("modalCompartir");
-const closeCompartir = document.getElementById("closeCompartir");
-const entidadCompartir = document.getElementById("entidadCompartir");
-const mensajeCompartir = document.getElementById("mensajeCompartir");
-const btnCopiarCompartir = document.getElementById("btnCopiarCompartir");
+  // COMPARTIR ALERTA ENTRE ENTIDADES
+  // ==========================================================
+  const modalCompartir = document.getElementById("modalCompartir");
+  const closeCompartir = document.getElementById("closeCompartir");
+  const entidadCompartir = document.getElementById("entidadCompartir");
+  const mensajeCompartir = document.getElementById("mensajeCompartir");
+  const btnCopiarCompartir = document.getElementById("btnCopiarCompartir");
 
-let alertaParaCompartir = null;
+  let alertaParaCompartir = null;
 
-// Abrir modal desde cada botón
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("btn-compartir")) {
-    e.stopPropagation();
-    alertaParaCompartir = alertas[e.target.dataset.index];
-    modalCompartir.style.display = "flex";
-    entidadCompartir.value = "";
-    mensajeCompartir.value = "";
-  }
-});
+  // Abrir modal desde cada botón
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("btn-compartir")) {
+      e.stopPropagation();
+      alertaParaCompartir = alertas[e.target.dataset.index];
+      modalCompartir.style.display = "flex";
+      entidadCompartir.value = "";
+      mensajeCompartir.value = "";
+    }
+  });
 
-// Cerrar modal
-closeCompartir?.addEventListener("click", () => {
-  modalCompartir.style.display = "none";
-});
+  // Cerrar modal
+  closeCompartir?.addEventListener("click", () => {
+    modalCompartir.style.display = "none";
+  });
 
-// Generar mensaje al seleccionar entidad
-entidadCompartir?.addEventListener("change", () => {
-  if (!entidadCompartir.value || !alertaParaCompartir) return;
+  // Generar mensaje al seleccionar entidad
+  entidadCompartir?.addEventListener("change", () => {
+    if (!entidadCompartir.value || !alertaParaCompartir) return;
 
-  const a = alertaParaCompartir;
+    const a = alertaParaCompartir;
 
-  const mensaje = `
+    const mensaje = `
 Entidad destino: ${entidadCompartir.value}
 Fecha de envío: ${new Date().toLocaleString()}
 
@@ -155,131 +154,127 @@ Resultado técnico: ${a.resultadoTecnico}
 Solicitamos coordinación para la evaluación y respuesta inmediata.
   `.trim();
 
-  mensajeCompartir.value = mensaje;
-});
+    mensajeCompartir.value = mensaje;
+  });
 
-// Copiar mensaje
-btnCopiarCompartir?.addEventListener("click", () => {
-  mensajeCompartir.select();
-  document.execCommand("copy");
-  alert("📋 Mensaje copiado y listo para enviar.");
-});
+  // Copiar mensaje
+  btnCopiarCompartir?.addEventListener("click", () => {
+    mensajeCompartir.select();
+    document.execCommand("copy");
+    alert("📋 Mensaje copiado y listo para enviar.");
+  });
 
-// Cerrar modal clic fuera
-window.addEventListener("click", (e) => {
-  if (e.target === modalCompartir) {
-    modalCompartir.style.display = "none";
-  }
-});
-
+  // Cerrar modal clic fuera
+  window.addEventListener("click", (e) => {
+    if (e.target === modalCompartir) {
+      modalCompartir.style.display = "none";
+    }
+  });
 
   // ====================================
-// INFORME MENSUAL
-// ====================================
-const btnGenerarInforme = document.getElementById("btnGenerarInforme");
-const modalInforme = document.getElementById("modalInforme");
-const closeInforme = document.getElementById("closeInforme");
-const graficoCanvas = document.getElementById("graficoDistritos");
-const estadisticasDistritos = document.getElementById("estadisticasDistritos");
-let grafico;
+  // INFORME MENSUAL
+  // ====================================
+  const btnGenerarInforme = document.getElementById("btnGenerarInforme");
+  const modalInforme = document.getElementById("modalInforme");
+  const closeInforme = document.getElementById("closeInforme");
+  const graficoCanvas = document.getElementById("graficoDistritos");
+  const estadisticasDistritos = document.getElementById("estadisticasDistritos");
+  let grafico;
 
-// Abrir modal
-btnGenerarInforme?.addEventListener("click", () => {
-  modalInforme.style.display = "flex";
-  generarInformeMensual();
-});
+  // Abrir modal
+  btnGenerarInforme?.addEventListener("click", () => {
+    modalInforme.style.display = "flex";
+    generarInformeMensual();
+  });
 
-// Cerrar modal
-closeInforme?.addEventListener("click", () => {
-  modalInforme.style.display = "none";
-});
+  // Cerrar modal
+  closeInforme?.addEventListener("click", () => {
+    modalInforme.style.display = "none";
+  });
 
   function generarInformeMensual() {
-  // agrupar alertas por distrito
-  const resumen = {};
+    // agrupar alertas por distrito
+    const resumen = {};
 
-  alertas.forEach(a => {
-    if (!resumen[a.lugar]) {
-      resumen[a.lugar] = {
-        cantidad: 0,
-        cloroTotal: 0,
-        bacteriasTotal: 0
-      };
-    }
+    alertas.forEach(a => {
+      if (!resumen[a.lugar]) {
+        resumen[a.lugar] = {
+          cantidad: 0,
+          cloroTotal: 0,
+          bacteriasTotal: 0
+        };
+      }
 
-    resumen[a.lugar].cantidad++;
-    resumen[a.lugar].cloroTotal += a.cloro;
-    resumen[a.lugar].bacteriasTotal += a.bacterias;
-  });
+      resumen[a.lugar].cantidad++;
+      resumen[a.lugar].cloroTotal += a.cloro;
+      resumen[a.lugar].bacteriasTotal += a.bacterias;
+    });
 
-  const labels = Object.keys(resumen);
-  const datosCloro = labels.map(d => (resumen[d].cloroTotal / resumen[d].cantidad).toFixed(2));
-  const datosBacterias = labels.map(d => (resumen[d].bacteriasTotal / resumen[d].cantidad).toFixed(2));
+    const labels = Object.keys(resumen);
+    const datosCloro = labels.map(d => (resumen[d].cloroTotal / resumen[d].cantidad).toFixed(2));
+    const datosBacterias = labels.map(d => (resumen[d].bacteriasTotal / resumen[d].cantidad).toFixed(2));
 
-  // Si ya existe gráfico, destruirlo antes de crear otro
-  if (grafico) grafico.destroy();
+    // Si ya existe gráfico, destruirlo antes de crear otro
+    if (grafico) grafico.destroy();
 
-  grafico = new Chart(graficoCanvas, {
-    type: "bar",
-    data: {
-      labels,
-      datasets: [
-        {
-          label: "Promedio de cloro (mg/L)",
-          data: datosCloro,
-          backgroundColor: "rgba(54, 162, 235, 0.7)"
-        },
-        {
-          label: "Promedio de bacterias (NMP/100ml)",
-          data: datosBacterias,
-          backgroundColor: "rgba(255, 99, 132, 0.7)"
-        }
-      ]
-    }
-  });
+    grafico = new Chart(graficoCanvas, {
+      type: "bar",
+      data: {
+        labels,
+        datasets: [
+          {
+            label: "Promedio de cloro (mg/L)",
+            data: datosCloro,
+            backgroundColor: "rgba(54, 162, 235, 0.7)"
+          },
+          {
+            label: "Promedio de bacterias (NMP/100ml)",
+            data: datosBacterias,
+            backgroundColor: "rgba(255, 99, 132, 0.7)"
+          }
+        ]
+      }
+    });
 
-  // Generar estadísticas detalladas
-  estadisticasDistritos.innerHTML = labels
-    .map(d => `
+    // Generar estadísticas detalladas
+    estadisticasDistritos.innerHTML = labels
+      .map(d => `
       <p><b>${d}</b> — ${resumen[d].cantidad} alertas  
         | Cloro promedio: ${datosCloro[labels.indexOf(d)]} mg/L  
         | Bacterias promedio: ${datosBacterias[labels.indexOf(d)]} NMP/100ml
       </p>
     `)
-    .join("");
-}
-
+      .join("");
+  }
 
   const btnExportarPDF = document.getElementById("btnExportarPDF");
 
-btnExportarPDF?.addEventListener("click", async () => {
-  const { jsPDF } = window.jspdf;
+  btnExportarPDF?.addEventListener("click", async () => {
+    const { jsPDF } = window.jspdf;
 
-  const pdf = new jsPDF();
+    const pdf = new jsPDF();
 
-  pdf.setFontSize(18);
-  pdf.text("Informe Mensual de Calidad del Agua", 10, 15);
+    pdf.setFontSize(18);
+    pdf.text("Informe Mensual de Calidad del Agua", 10, 15);
 
-  // Imagen del gráfico
-  const imgData = graficoCanvas.toDataURL("image/png");
-  pdf.addImage(imgData, "PNG", 10, 25, 180, 80);
+    // Imagen del gráfico
+    const imgData = graficoCanvas.toDataURL("image/png");
+    pdf.addImage(imgData, "PNG", 10, 25, 180, 80);
 
-  pdf.setFontSize(14);
-  pdf.text("Resumen por distrito:", 10, 120);
+    pdf.setFontSize(14);
+    pdf.text("Resumen por distrito:", 10, 120);
 
-  let y = 130;
-  const texto = estadisticasDistritos.innerText.split("\n");
+    let y = 130;
+    const texto = estadisticasDistritos.innerText.split("\n");
 
-  texto.forEach(linea => {
-    pdf.text(linea, 10, y);
-    y += 8;
+    texto.forEach(linea => {
+      pdf.text(linea, 10, y);
+      y += 8;
+    });
+
+    pdf.save("informe-mensual-aquaalert.pdf");
   });
 
-  pdf.save("informe-mensual-aquaalert.pdf");
-});
-
-
-  
   // ====================================
   // NOTIFICACIONES PERSONALIZADAS
   // ====================================
@@ -439,55 +434,77 @@ btnExportarPDF?.addEventListener("click", async () => {
   // ====================================
   // ALERTAS + IMAGEN
   // ====================================
-let alertas = [
-  {
-    titulo: "Niveles bajos de cloro residual",
-    lugar: "San Juan de Lurigancho",
-    fecha: "05/10/2025",
-    hora: "07:45 a.m.",
-    descripcion: "Se detectó un nivel de cloro inferior al recomendado.",
-    estado: "En proceso",
-    imagen: null,
-    cloro: 0.1,
-    bacterias: 5,
-    comentarioTecnico: "",
-    resultadoTecnico: "Pendiente",
-    responsable: "No asignado",
-    fechaActualizacion: "05/10/2025 08:00 a.m."
-  },
-  {
-    titulo: "Corte programado de servicio",
-    lugar: "Villa El Salvador",
-    fecha: "05/10/2025",
-    hora: "10:00 a.m. - 8:00 p.m.",
-    descripcion: "Corte por mantenimiento.",
-    estado: "Terminado",
-    imagen: null,
-    cloro: 0.4,
-    bacterias: 0,
-    comentarioTecnico: "",
-    resultadoTecnico: "Pendiente",
-    responsable: "Área de Operaciones",
-    fechaActualizacion: "05/10/2025 09:30 a.m."
-  },
-  {
-    titulo: "Presencia de turbidez visible",
-    lugar: "Comas",
-    fecha: "06/10/2025",
-    hora: "04:30 p.m.",
-    descripcion: "Evita consumir directamente.",
-    estado: "Solucionado",
-    imagen: null,
-    cloro: 0.3,
-    bacterias: 10,
-    comentarioTecnico: "",
-    resultadoTecnico: "Pendiente",
-    responsable: "Equipo de Calidad",
-    fechaActualizacion: "06/10/2025 05:00 p.m."
-  },
-];
+  let alertas = [
+    {
+      titulo: "Niveles bajos de cloro residual",
+      lugar: "San Juan de Lurigancho",
+      fecha: "05/10/2025",
+      hora: "07:45 a.m.",
+      descripcion: "Se detectó un nivel de cloro inferior al recomendado.",
+      estado: "En proceso",
+      imagen: null,
+      cloro: 0.1,
+      bacterias: 5,
+      comentarioTecnico: "",
+      resultadoTecnico: "Pendiente",
+      responsable: "No asignado",
+      fechaActualizacion: "05/10/2025 08:00 a.m."
+    },
+    {
+      titulo: "Corte programado de servicio",
+      lugar: "Villa El Salvador",
+      fecha: "05/10/2025",
+      hora: "10:00 a.m. - 8:00 p.m.",
+      descripcion: "Corte por mantenimiento.",
+      estado: "Terminado",
+      imagen: null,
+      cloro: 0.4,
+      bacterias: 0,
+      comentarioTecnico: "",
+      resultadoTecnico: "Pendiente",
+      responsable: "Área de Operaciones",
+      fechaActualizacion: "05/10/2025 09:30 a.m."
+    },
+    {
+      titulo: "Presencia de turbidez visible",
+      lugar: "Comas",
+      fecha: "06/10/2025",
+      hora: "04:30 p.m.",
+      descripcion: "Evita consumir directamente.",
+      estado: "Solucionado",
+      imagen: null,
+      cloro: 0.3,
+      bacterias: 10,
+      comentarioTecnico: "",
+      resultadoTecnico: "Pendiente",
+      responsable: "Equipo de Calidad",
+      fechaActualizacion: "06/10/2025 05:00 p.m."
+    },
+  ];
 
-  
+  // 👉 NUEVO: LÍDERES DE ZONA POR DISTRITO
+  const lideresZona = {
+    "San Juan de Lurigancho": {
+      nombre: "Ing. Carla Ramos",
+      institucion: "SEDAPAL - Zona Este",
+      telefono: "+51 987 654 321",
+      correo: "carla.ramos@sedapal.pe"
+    },
+    "Comas": {
+      nombre: "Lic. José Medina",
+      institucion: "DIGESA - Lima Norte",
+      telefono: "+51 934 112 233",
+      correo: "jose.medina@digesa.gob.pe"
+    },
+    "Villa El Salvador": {
+      nombre: "Ing. Luis Gutiérrez",
+      institucion: "SUNASS - Lima Sur",
+      telefono: "+51 945 778 889",
+      correo: "luis.gutierrez@sunass.gob.pe"
+    }
+    // Puedes seguir agregando distritos...
+  };
+
   function interpretarCalidadAgua(cloro, bacterias) {
     // Ejemplo simple, puedes ajustar rangos si tu profe te da otros
     if (bacterias > 0) {
@@ -524,7 +541,7 @@ let alertas = [
       div.className = "alerta-card";
 
       const interprete = interpretarCalidadAgua(a.cloro, a.bacterias);
-      
+
       div.innerHTML = `
         <div class="alerta-info">
           <i class="fa-regular fa-bell"></i>
@@ -543,54 +560,55 @@ let alertas = [
               ${interprete.texto}
             </p>
 
-<p><b>Estado:</b> 
-  <span class="estado ${a.estado.replace(" ", "-").toLowerCase()}">
-    ${a.estado}
-  </span>
-</p>
+            <p><b>Estado:</b> 
+              <span class="estado ${a.estado.replace(" ", "-").toLowerCase()}">
+                ${a.estado}
+              </span>
+            </p>
 
-<p><b>Responsable:</b> ${a.responsable || "No asignado"}</p>
-<p><b>Última actualización:</b> ${a.fechaActualizacion || "—"}</p>
+            <p><b>Responsable:</b> ${a.responsable || "No asignado"}</p>
+            <p><b>Última actualización:</b> ${a.fechaActualizacion || "—"}</p>
 
-<p><b>Revisión técnica:</b>
-  <span class="badge-revision ${
-    a.resultadoTecnico === "Confirmada"
-      ? "rev-confirmada"
-      : a.resultadoTecnico === "Descartada"
-      ? "rev-descartada"
-      : "rev-pendiente"
-  }">
-    ${a.resultadoTecnico || "Pendiente"}
-  </span>
-</p>
+            <p><b>Revisión técnica:</b>
+              <span class="badge-revision ${
+                a.resultadoTecnico === "Confirmada"
+                  ? "rev-confirmada"
+                  : a.resultadoTecnico === "Descartada"
+                  ? "rev-descartada"
+                  : "rev-pendiente"
+              }">
+                ${a.resultadoTecnico || "Pendiente"}
+              </span>
+            </p>
 
-${
-  a.comentarioTecnico
-    ? `<p class="comentario-tecnico"><b>Comentario técnico:</b> ${a.comentarioTecnico}</p>`
-    : ""
-}
+            ${
+              a.comentarioTecnico
+                ? `<p class="comentario-tecnico"><b>Comentario técnico:</b> ${a.comentarioTecnico}</p>`
+                : ""
+            }
 
-<button class="btn btn-add btn-revision-tecnica" data-index="${index}">
-  Revisión técnica
-</button>
+            <button class="btn btn-add btn-revision-tecnica" data-index="${index}">
+              Revisión técnica
+            </button>
 
-<button class="btn btn-add btn-estado" data-index="${index}">
-  Actualizar estado
-</button>
+            <button class="btn btn-add btn-estado" data-index="${index}">
+              Actualizar estado
+            </button>
 
+            <!-- 👉 NUEVO: botón contactar líder -->
+            <button class="btn btn-add btn-contactar-lider" data-lugar="${a.lugar}">
+              Contactar líder de zona
+            </button>
 
+            ${
+              a.comentarioTecnico
+                ? `<p class="comentario-tecnico"><b>Comentario técnico:</b> ${a.comentarioTecnico}</p>`
+                : ""
+            }
 
-${
-  a.comentarioTecnico
-    ? `<p class="comentario-tecnico"><b>Comentario técnico:</b> ${a.comentarioTecnico}</p>`
-    : ""
-}
-
-<button class="btn btn-add btn-compartir" data-index="${index}">
-  Compartir
-</button>
-
-
+            <button class="btn btn-add btn-compartir" data-index="${index}">
+              Compartir
+            </button>
           </div>
         </div>
         <i class="fa-solid fa-arrow-right"></i>
@@ -635,23 +653,22 @@ ${
 
   // Guardar revisión técnica
   formRevisionTecnica?.addEventListener("submit", (e) => {
-  e.preventDefault();
-  if (alertaSeleccionada === null) return;
+    e.preventDefault();
+    if (alertaSeleccionada === null) return;
 
-  const resultado = selectResultadoTecnico.value; // Confirmada / Descartada
-  const comentario = comentarioTecnicoInput.value.trim();
+    const resultado = selectResultadoTecnico.value; // Confirmada / Descartada
+    const comentario = comentarioTecnicoInput.value.trim();
 
-  // ✅ Solo actualizamos la parte técnica,
-  // NO tocamos el estado operativo de la alerta
-  alertas[alertaSeleccionada].resultadoTecnico = resultado;
-  alertas[alertaSeleccionada].comentarioTecnico = comentario;
+    // ✅ Solo actualizamos la parte técnica,
+    // NO tocamos el estado operativo de la alerta
+    alertas[alertaSeleccionada].resultadoTecnico = resultado;
+    alertas[alertaSeleccionada].comentarioTecnico = comentario;
 
-  renderAlertas();
-  modalRevisionTecnica.style.display = "none";
+    renderAlertas();
+    modalRevisionTecnica.style.display = "none";
 
-  alert("✅ Revisión técnica guardada para esta alerta.");
-});
-
+    alert("✅ Revisión técnica guardada para esta alerta.");
+  });
 
   // ====================================
   // AGREGAR NUEVA ALERTA
@@ -714,21 +731,20 @@ ${
     }
 
     alertas.push({
-  titulo,
-  lugar,
-  fecha,
-  hora,
-  descripcion,
-  estado: "En proceso",
-  imagen,
-  cloro: 0.4,          // valor por defecto
-  bacterias: 0,        // valor por defecto
-  comentarioTecnico: "",
-  resultadoTecnico: "Pendiente",
-  responsable: "No asignado",
-  fechaActualizacion: new Date().toLocaleString("es-PE")
-});
-
+      titulo,
+      lugar,
+      fecha,
+      hora,
+      descripcion,
+      estado: "En proceso",
+      imagen,
+      cloro: 0.4,          // valor por defecto
+      bacterias: 0,        // valor por defecto
+      comentarioTecnico: "",
+      resultadoTecnico: "Pendiente",
+      responsable: "No asignado",
+      fechaActualizacion: new Date().toLocaleString("es-PE")
+    });
 
     renderAlertas();
     mensajeForm.textContent = "¡Alerta guardada correctamente!";
@@ -1053,14 +1069,62 @@ ${
       );
     }
   });
+
+  // 👉 NUEVO: MODAL CONTACTAR LÍDER DE ZONA
+  const modalContactarLider = document.getElementById("modalContactarLider");
+  const closeContactarLider = document.getElementById("closeContactarLider");
+  const textoZonaLider = document.getElementById("textoZonaLider");
+  const infoLiderZona = document.getElementById("infoLiderZona");
+
+  // Delegación: click en botón "Contactar líder de zona"
+  document.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("btn-contactar-lider")) return;
+    e.stopPropagation();
+
+    const distrito = e.target.dataset.lugar;
+    const lider = lideresZona[distrito];
+
+    if (!modalContactarLider || !textoZonaLider || !infoLiderZona) return;
+
+    if (!lider) {
+      textoZonaLider.textContent = `No se ha registrado aún un líder de zona para ${distrito}.`;
+      infoLiderZona.innerHTML = `<p>Puedes coordinar directamente con la municipalidad o la UGP de tu distrito.</p>`;
+    } else {
+      textoZonaLider.textContent = `Distrito: ${distrito}`;
+
+      const telefonoParaWa = lider.telefono.replace(/[^0-9]/g, "");
+      const linkWa = `https://wa.me/51${telefonoParaWa.slice(-9)}`;
+      const linkMail = `mailto:${lider.correo}?subject=Coordinación%20por%20alerta%20de%20agua%20en%20${encodeURIComponent(
+        distrito
+      )}`;
+
+      infoLiderZona.innerHTML = `
+        <p><b>Nombre:</b> ${lider.nombre}</p>
+        <p><b>Institución:</b> ${lider.institucion}</p>
+        <p><b>Teléfono:</b> ${lider.telefono}</p>
+        <p><b>Correo:</b> ${lider.correo}</p>
+        <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="${linkWa}" target="_blank" class="btn" style="background-color:#25D366; padding:8px 12px; border-radius:6px; color:#fff; text-decoration:none; font-size:13px;">
+            Contactar por WhatsApp
+          </a>
+          <a href="${linkMail}" class="btn" style="background-color:#004aad; padding:8px 12px; border-radius:6px; color:#fff; text-decoration:none; font-size:13px;">
+            Enviar correo
+          </a>
+        </div>
+      `;
+    }
+
+    modalContactarLider.style.display = "flex";
+  });
+
+  // Cerrar modal líder
+  closeContactarLider?.addEventListener("click", () => {
+    modalContactarLider.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modalContactarLider) {
+      modalContactarLider.style.display = "none";
+    }
+  });
 });
-
-
-
-
-
-
-
-
-
-
