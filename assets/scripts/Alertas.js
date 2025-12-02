@@ -41,9 +41,80 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // ==========================================================
+// COMPARTIR ALERTA ENTRE ENTIDADES
+// ==========================================================
+const modalCompartir = document.getElementById("modalCompartir");
+const closeCompartir = document.getElementById("closeCompartir");
+const entidadCompartir = document.getElementById("entidadCompartir");
+const mensajeCompartir = document.getElementById("mensajeCompartir");
+const btnCopiarCompartir = document.getElementById("btnCopiarCompartir");
+
+let alertaParaCompartir = null;
+
+// Abrir modal desde cada botón
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-compartir")) {
+    e.stopPropagation();
+    alertaParaCompartir = alertas[e.target.dataset.index];
+    modalCompartir.style.display = "flex";
+    entidadCompartir.value = "";
+    mensajeCompartir.value = "";
+  }
+});
+
+// Cerrar modal
+closeCompartir?.addEventListener("click", () => {
+  modalCompartir.style.display = "none";
+});
+
+// Generar mensaje al seleccionar entidad
+entidadCompartir?.addEventListener("change", () => {
+  if (!entidadCompartir.value || !alertaParaCompartir) return;
+
+  const a = alertaParaCompartir;
+
+  const mensaje = `
+Entidad destino: ${entidadCompartir.value}
+Fecha de envío: ${new Date().toLocaleString()}
+
+Se comparte la siguiente alerta reportada en AquaAlert:
+
+- Título: ${a.titulo}
+- Distrito: ${a.lugar}
+- Fecha y hora: ${a.fecha} ${a.hora}
+- Estado: ${a.estado}
+- Cloro: ${a.cloro} mg/L
+- Bacterias: ${a.bacterias} NMP/100ml
+
+Comentario técnico:
+${a.comentarioTecnico || "Sin comentarios técnicos registrados."}
+
+Resultado técnico: ${a.resultadoTecnico}
+
+Solicitamos coordinación para la evaluación y respuesta inmediata.
+  `.trim();
+
+  mensajeCompartir.value = mensaje;
+});
+
+// Copiar mensaje
+btnCopiarCompartir?.addEventListener("click", () => {
+  mensajeCompartir.select();
+  document.execCommand("copy");
+  alert("📋 Mensaje copiado y listo para enviar.");
+});
+
+// Cerrar modal clic fuera
+window.addEventListener("click", (e) => {
+  if (e.target === modalCompartir) {
+    modalCompartir.style.display = "none";
+  }
+});
+
 
   // ====================================
-// INFORME MENSUAL (NUEVO)
+// INFORME MENSUAL
 // ====================================
 const btnGenerarInforme = document.getElementById("btnGenerarInforme");
 const modalInforme = document.getElementById("modalInforme");
@@ -898,6 +969,7 @@ ${
     }
   });
 });
+
 
 
 
