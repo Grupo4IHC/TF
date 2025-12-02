@@ -52,7 +52,6 @@ const spanCorreo = document.getElementById("correo");
 const spanNumero = document.getElementById("numero");
 const spanRol = document.getElementById("rol");
 
-// 👇 aquí se asume que tus usuarios están guardados en este key:
 let usuarios = JSON.parse(localStorage.getItem("usuariosAquaAlert") || "[]");
 
 // Buscamos el usuario logueado por nombre de usuario o correo
@@ -61,7 +60,6 @@ let usuarioActual =
     (u) => u.usuario === nombreActivo || u.correo === nombreActivo
   ) || null;
 
-// 🔥 NUEVO: si no existe en usuariosAquaAlert, lo creamos como admin (beta)
 if (!usuarioActual && nombreActivo) {
   usuarioActual = {
     usuario: nombreActivo,
@@ -81,14 +79,14 @@ if (usuarioActual) {
   spanCorreo.textContent = usuarioActual.correo || "-";
   spanNumero.textContent = usuarioActual.numero || "-";
 
-  // mostramos nombre bonito del rol
+  // mostramos nombre del rol
   let rolTexto = "Ciudadano/a";
   if (usuarioActual.rol === "admin") rolTexto = "Administrador/a";
   if (usuarioActual.rol === "tecnico") rolTexto = "Técnico/a";
 
   spanRol.textContent = rolTexto;
 } else {
-  // fallback extremo (no debería pasar casi nunca)
+
   spanUsuario.textContent = nombreActivo || "-";
   spanNombre.textContent = "-";
   spanCorreo.textContent = "-";
@@ -229,5 +227,6 @@ if (usuarioActual) {
     }
   });
 });
+
 
 
