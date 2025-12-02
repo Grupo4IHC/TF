@@ -211,6 +211,101 @@ h1 {
   position: relative;
   animation: slideDown 0.3s ease-out;
 }
+
+/* ===== MODAL COMUNICADOS DIGESA ===== */
+
+.modal-comunicados {
+  max-width: 700px;
+  width: 100%;
+}
+
+.modal-comunicados-descripcion {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.modal-comunicados-divider {
+  margin: 10px 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Lista de comunicados dentro del modal */
+.lista-comunicados {
+  max-height: 250px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Tarjeta de cada comunicado */
+.comunicado-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+.comunicado-info p {
+  margin: 2px 0;
+}
+
+/* Contenedor de botones Editar / Eliminar */
+.comunicado-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.comunicado-actions .btn {
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+/* Botón eliminar más rojo */
+.btn-eliminar-comunicado {
+  background-color: #c0392b;
+}
+
+/* Formulario del comunicado */
+.form-comunicado {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-comunicado input,
+.form-comunicado textarea {
+  width: 100%;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #d0d0d0;
+  font-family: "Poppins", sans-serif;
+}
+
+.form-comunicado textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.btn-guardar-comunicado {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.mensaje-comunicado {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
 @keyframes slideDown {
   from {
     transform: translateY(-30px);
@@ -276,6 +371,7 @@ h1 {
     font-size: 14px;
   }
 }
+
 
 
 
