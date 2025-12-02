@@ -41,6 +41,66 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // ====================================
+// ACTUALIZAR ESTADO DE INCIDENCIA
+// ====================================
+const modalEstado = document.getElementById("modalEstado");
+const closeEstado = document.getElementById("closeEstado");
+const tituloEstadoIncidencia = document.getElementById("tituloEstadoIncidencia");
+const selectEstadoIncidencia = document.getElementById("selectEstadoIncidencia");
+const inputResponsable = document.getElementById("inputResponsable");
+const btnGuardarEstado = document.getElementById("btnGuardarEstado");
+
+let indiceEstadoSeleccionado = null;
+
+// Abrir modal desde botón "Actualizar estado"
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("btn-estado")) {
+    e.stopPropagation();
+    indiceEstadoSeleccionado = e.target.dataset.index;
+    const a = alertas[indiceEstadoSeleccionado];
+
+    tituloEstadoIncidencia.textContent = `Alerta: ${a.titulo} - ${a.lugar}`;
+    selectEstadoIncidencia.value = a.estado;
+    inputResponsable.value = a.responsable && a.responsable !== "No asignado"
+      ? a.responsable
+      : "";
+
+    modalEstado.style.display = "flex";
+  }
+});
+
+// Cerrar modal
+closeEstado?.addEventListener("click", () => {
+  modalEstado.style.display = "none";
+});
+
+// Cerrar clic fuera
+window.addEventListener("click", (e) => {
+  if (e.target === modalEstado) {
+    modalEstado.style.display = "none";
+  }
+});
+
+// Guardar cambios
+btnGuardarEstado?.addEventListener("click", () => {
+  if (indiceEstadoSeleccionado === null) return;
+
+  const nuevoEstado = selectEstadoIncidencia.value;
+  const nuevoResponsable = inputResponsable.value.trim() || "No asignado";
+
+  alertas[indiceEstadoSeleccionado].estado = nuevoEstado;
+  alertas[indiceEstadoSeleccionado].responsable = nuevoResponsable;
+  alertas[indiceEstadoSeleccionado].fechaActualizacion =
+    new Date().toLocaleString("es-PE");
+
+  renderAlertas();
+  modalEstado.style.display = "none";
+
+  alert("✅ Estado de la incidencia actualizado correctamente.");
+});
+
+  
   // ==========================================================
 // COMPARTIR ALERTA ENTRE ENTIDADES
 // ==========================================================
@@ -998,6 +1058,7 @@ ${
     }
   });
 });
+
 
 
 
