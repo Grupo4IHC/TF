@@ -421,7 +421,7 @@ Solicitamos coordinación para la evaluación y respuesta inmediata.
   }
 
   // ====================================
-  // REVISIÓN TÉCNICA DE ALERTAS (NUEVO)
+  // REVISIÓN TÉCNICA DE ALERTAS
   // ====================================
   const modalRevisionTecnica = document.getElementById("modalRevisionTecnica");
   const closeRevisionTecnica = document.getElementById("closeRevisionTecnica");
@@ -482,7 +482,7 @@ Solicitamos coordinación para la evaluación y respuesta inmediata.
     },
   ];
 
-  // 👉 NUEVO: LÍDERES DE ZONA POR DISTRITO
+  //  LÍDERES DE ZONA POR DISTRITO
   const lideresZona = {
     "San Juan de Lurigancho": {
       nombre: "Ing. Carla Ramos",
@@ -595,7 +595,7 @@ Solicitamos coordinación para la evaluación y respuesta inmediata.
               Actualizar estado
             </button>
 
-            <!-- 👉 NUEVO: botón contactar líder -->
+            <!-- botón contactar líder -->
             <button class="btn btn-add btn-contactar-lider" data-lugar="${a.lugar}">
               Contactar líder de zona
             </button>
@@ -1070,7 +1070,7 @@ Solicitamos coordinación para la evaluación y respuesta inmediata.
     }
   });
 
-  // 👉 NUEVO: MODAL CONTACTAR LÍDER DE ZONA
+  // MODAL CONTACTAR LÍDER DE ZONA
   const modalContactarLider = document.getElementById("modalContactarLider");
   const closeContactarLider = document.getElementById("closeContactarLider");
   const textoZonaLider = document.getElementById("textoZonaLider");
@@ -1128,3 +1128,4 @@ Solicitamos coordinación para la evaluación y respuesta inmediata.
     }
   });
 });
+
