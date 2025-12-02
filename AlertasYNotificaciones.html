@@ -75,6 +75,8 @@
         <button class="btn btn-add" id="btnRecomendacion">Recomendación del Día</button>
         <button class="btn btn-add" id="btnNotifPersonalizadas">Notificaciones Personalizadas</button>
         <button class="btn btn-add" id="btnConfigPreferencias">Configurar Preferencias</button>
+        <!-- NUEVO BOTÓN -->
+        <button class="btn btn-add" id="btnSeguridadAgua">Ver seguridad del agua</button>
         <button class="btn btn-add" id="btnComunicados">Comunicados</button>
       </div>
 
@@ -85,10 +87,9 @@
       <div class="alertas-list" id="alertasList"></div>
 
       <div class="btns">
-  <a href="SesionIniciada.html" class="btn btn-volver">← Volver</a>
-</div>
-      </main>
-
+        <a href="SesionIniciada.html" class="btn btn-volver">← Volver</a>
+      </div>
+    </main>
 
     <!-- MODAL CREAR ALERTA -->
     <div id="modalAlerta" class="modal">
@@ -117,7 +118,7 @@
       <div class="modal-card">
         <span class="close" id="closeNotificaciones">&times;</span>
         <h2>¿Deseas recibir notificaciones?</h2>
-        <p>Estas notificaciones te avisaran de cortes de agua, suministros de agua restablecidos, alertas cerca a tu zona. Puedes activarlas o desactivarlas cuando quieras.</p>
+        <p>Estas notificaciones te avisarán de cortes de agua, suministros restablecidos y alertas cerca a tu zona. Puedes activarlas o desactivarlas cuando quieras.</p>
         <div style="display:flex; gap:1rem; justify-content:center; margin-top:20px;">
           <button id="btnSiNotificaciones" class="btn-choice btn-si">Sí</button>
           <button id="btnNoNotificaciones" class="btn-choice btn-no">No</button>
@@ -215,60 +216,94 @@
       </div>
     </div>
 
-    <!-- MODAL COMUNICADOS RESULTADOS VERIFICADOS DIGESA -->
-<div id="modalComunicados" class="modal">
-  <div class="modal-card modal-comunicados">
-    <span class="close" id="closeComunicados">&times;</span>
+    <!-- NUEVO MODAL: SEGURIDAD DEL AGUA POR DISTRITO -->
+    <div id="modalSeguridadAgua" class="modal">
+      <div class="modal-card">
+        <span class="close" id="closeSeguridadAgua">&times;</span>
+        <h2>Seguridad del agua potable</h2>
+        <p>
+          Selecciona un distrito para verificar si el agua cumple los tiempos recomendados
+          de desinfección y almacenamiento para ser apta para consumo.
+        </p>
 
-    <h2>Comunicados oficiales - Resultados verificados</h2>
-    <p class="modal-comunicados-descripcion">
-      Aquí se publican los comunicados con resultados confirmados por DIGESA u otras autoridades.
-    </p>
+        <label for="selectDistritoSeguridad"><b>Distrito:</b></label>
+        <select id="selectDistritoSeguridad" class="filtro-select">
+          <option value="" disabled selected>Selecciona un distrito</option>
+          <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+          <option value="Comas">Comas</option>
+          <option value="San Martín de Porres">San Martín de Porres</option>
+          <option value="Villa El Salvador">Villa El Salvador</option>
+          <option value="Los Olivos">Los Olivos</option>
+          <option value="Ate">Ate</option>
+          <option value="Rímac">Rímac</option>
+          <option value="Surco">Surco</option>
+          <option value="Breña">Breña</option>
+          <option value="Chorrillos">Chorrillos</option>
+        </select>
 
-    <!-- LISTA DE COMUNICADOS -->
-    <div id="listaComunicados" class="lista-comunicados">
-      <!-- Se llena dinámicamente desde Alertas.js -->
+        <button id="btnEvaluarSeguridad" class="btn btn-add" style="margin-top: 15px;">
+          Evaluar seguridad
+        </button>
+
+        <p id="resultadoSeguridad" class="mensaje" style="margin-top: 15px;"></p>
+      </div>
     </div>
 
-    <hr class="modal-comunicados-divider" />
+    <!-- MODAL COMUNICADOS RESULTADOS VERIFICADOS DIGESA -->
+    <div id="modalComunicados" class="modal">
+      <div class="modal-card modal-comunicados">
+        <span class="close" id="closeComunicados">&times;</span>
 
-    <!-- FORMULARIO PARA CREAR / EDITAR -->
-    <h3 id="tituloFormComunicado" class="form-comunicado-titulo">
-      Nuevo comunicado
-    </h3>
+        <h2>Comunicados oficiales - Resultados verificados</h2>
+        <p class="modal-comunicados-descripcion">
+          Aquí se publican los comunicados con resultados confirmados por DIGESA u otras autoridades.
+        </p>
 
-    <form id="formComunicado" class="form-comunicado">
-      <input
-        type="text"
-        id="tituloComunicado"
-        placeholder="Título del comunicado"
-        required
-      />
-      <input
-        type="date"
-        id="fechaComunicado"
-        required
-      />
-      <textarea
-        id="descripcionComunicado"
-        placeholder="Descripción / resumen del resultado verificado"
-        rows="3"
-        required
-      ></textarea>
-      <input
-        type="url"
-        id="enlaceComunicado"
-        placeholder="Enlace al informe oficial (opcional)"
-      />
+        <!-- LISTA DE COMUNICADOS -->
+        <div id="listaComunicados" class="lista-comunicados">
+          <!-- Se llena dinámicamente desde Alertas.js -->
+        </div>
 
-      <button type="submit" class="btn btn-add btn-guardar-comunicado">
-        Guardar comunicado
-      </button>
+        <hr class="modal-comunicados-divider" />
 
-      <p id="mensajeComunicado" class="mensaje mensaje-comunicado"></p>
-    </form>
-  </div>
-</div>
+        <!-- FORMULARIO PARA CREAR / EDITAR -->
+        <h3 id="tituloFormComunicado" class="form-comunicado-titulo">
+          Nuevo comunicado
+        </h3>
+
+        <form id="formComunicado" class="form-comunicado">
+          <input
+            type="text"
+            id="tituloComunicado"
+            placeholder="Título del comunicado"
+            required
+          />
+          <input
+            type="date"
+            id="fechaComunicado"
+            required
+          />
+          <textarea
+            id="descripcionComunicado"
+            placeholder="Descripción / resumen del resultado verificado"
+            rows="3"
+            required
+          ></textarea>
+          <input
+            type="url"
+            id="enlaceComunicado"
+            placeholder="Enlace al informe oficial (opcional)"
+          />
+
+          <button type="submit" class="btn btn-add btn-guardar-comunicado">
+            Guardar comunicado
+          </button>
+
+          <p id="mensajeComunicado" class="mensaje mensaje-comunicado"></p>
+        </form>
+      </div>
+    </div>
+
     <!-- FOOTER -->
     <footer class="footer">
       <div class="footer-container">
@@ -320,6 +355,7 @@
     <script src="assets/scripts/Alertas.js"></script>
   </body>
 </html>
+
 
 
 
