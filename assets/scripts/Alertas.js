@@ -1,48 +1,6 @@
 // ====================================
-// ENCUESTAS SOBRE SERVICIO DE AGUA
+// MENÚ HAMBURGUESA
 // ====================================
-
-const btnEncuestas = document.getElementById("btnEncuestas");
-const modalEncuestas = document.getElementById("modalEncuestas");
-const closeEncuestas = document.getElementById("closeEncuestas");
-const btnEncuestaSi = document.getElementById("btnEncuestaSi");
-const btnEncuestaNo = document.getElementById("btnEncuestaNo");
-
-// Abrir modal
-btnEncuestas?.addEventListener("click", () => {
-  modalEncuestas.style.display = "flex";
-});
-
-// Cerrar con X
-closeEncuestas?.addEventListener("click", () => {
-  modalEncuestas.style.display = "none";
-});
-
-// Confirmar "Sí"
-btnEncuestaSi?.addEventListener("click", () => {
-  alert(
-    "✔ ¡Perfecto! Recibirás encuestas para ayudarnos a mejorar la calidad del servicio de agua."
-  );
-  localStorage.setItem("recibirEncuestas", "si");
-  modalEncuestas.style.display = "none";
-});
-
-// Confirmar "No"
-btnEncuestaNo?.addEventListener("click", () => {
-  alert("No recibirás encuestas por ahora.");
-  localStorage.setItem("recibirEncuestas", "no");
-  modalEncuestas.style.display = "none";
-});
-
-// Cerrar modal tocando fuera
-window.addEventListener("click", (e) => {
-  if (e.target === modalEncuestas) {
-    modalEncuestas.style.display = "none";
-  }
-});
-
-
-//  MENÚ HAMBURGUESA
 const hamburger = document.getElementById("hamburger");
 const nav = document.querySelector(".nav");
 const registrarBtn = document.querySelector(".btn-registrarse");
@@ -62,9 +20,43 @@ hamburger.addEventListener("click", () => {
 });
 
 // ====================================
-// ESPERAR A QUE HTML CARGUE
+// TODO EL RESTO ESPERA A QUE CARGUE EL HTML
 // ====================================
 document.addEventListener("DOMContentLoaded", () => {
+
+  // ====================================
+  // ENCUESTAS SOBRE SERVICIO DE AGUA
+  // ====================================
+  const btnEncuestas = document.getElementById("btnEncuestas");
+  const modalEncuestas = document.getElementById("modalEncuestas");
+  const closeEncuestas = document.getElementById("closeEncuestas");
+  const btnEncuestaSi = document.getElementById("btnEncuestaSi");
+  const btnEncuestaNo = document.getElementById("btnEncuestaNo");
+
+  btnEncuestas?.addEventListener("click", () => {
+    modalEncuestas.style.display = "flex";
+  });
+
+  closeEncuestas?.addEventListener("click", () => {
+    modalEncuestas.style.display = "none";
+  });
+
+  btnEncuestaSi?.addEventListener("click", () => {
+    alert("✔ ¡Gracias! Recibirás encuestas para ayudarnos a mejorar el servicio.");
+    localStorage.setItem("recibirEncuestas", "si");
+    modalEncuestas.style.display = "none";
+  });
+
+  btnEncuestaNo?.addEventListener("click", () => {
+    alert("No recibirás encuestas por ahora.");
+    localStorage.setItem("recibirEncuestas", "no");
+    modalEncuestas.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modalEncuestas) modalEncuestas.style.display = "none";
+  });
+
   // ====================================
   // NOTIFICACIONES PERSONALIZADAS
   // ====================================
@@ -100,9 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btnConfirmarSi?.addEventListener("click", () => {
     const distrito = selectDistritoNotif.value;
-
     alert(`✔ Notificaciones activadas.\nRecibirás alertas por SMS cuando se detecte agua no segura en ${distrito}.`);
-
     modalNotifPersonalizadas.style.display = "none";
     modalConfirmacionNotif.style.display = "none";
   });
@@ -112,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ====================================
-  // FILTRO DE DISTRITOS
+  // FILTRO DE DISTRITOS EN ALERTAS
   // ====================================
   const filtroDistrito = document.getElementById("filtroDistrito");
   const listaAlertas = document.getElementById("alertasList");
@@ -212,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================================
-  // ALERTAS
+  // LISTA DE ALERTAS
   // ====================================
   let alertas = [
     {
@@ -220,9 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
       lugar: "San Juan de Lurigancho",
       fecha: "05/10/2025",
       hora: "07:45 a.m.",
-      descripcion: "Se detectó un nivel de cloro inferior al recomendado.",
+      descripcion: "Nivel de cloro inferior al recomendado.",
       estado: "En proceso",
-      imagen: null,
     },
     {
       titulo: "Corte programado de servicio",
@@ -231,7 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hora: "10:00 a.m. - 8:00 p.m.",
       descripcion: "Corte por mantenimiento.",
       estado: "Terminado",
-      imagen: null,
     },
     {
       titulo: "Presencia de turbidez visible",
@@ -240,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hora: "04:30 p.m.",
       descripcion: "Evita consumir directamente.",
       estado: "Solucionado",
-      imagen: null,
     },
   ];
 
@@ -249,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
     alertas.forEach((a) => {
       const div = document.createElement("div");
       div.className = "alerta-card";
-
       div.innerHTML = `
         <div class="alerta-info">
           <i class="fa-regular fa-bell"></i>
@@ -258,16 +244,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <p><b>Lugar:</b> <span class="alerta-lugar">${a.lugar}</span></p>
             <p><b>Fecha:</b> ${a.fecha}</p>
             <p><b>Hora:</b> ${a.hora}</p>
-            ${a.imagen ? `<img src="${a.imagen}" class="alerta-img" />` : ""}
-            <p><b>Estado:</b> <span class="estado">${a.estado}</span></p>
+            <p><b>Estado:</b> ${a.estado}</p>
           </div>
         </div>
-        <i class="fa-solid fa-arrow-right"></i>
       `;
-
       div.addEventListener("click", () => {
         alert(
-          `Detalles de la alerta:\n\nTítulo: ${a.titulo}\nLugar: ${a.lugar}\nFecha: ${a.fecha}\nHora: ${a.hora}\nEstado: ${a.estado}\n\nDescripción: ${a.descripcion}`
+          `Detalles:\n\n${a.titulo}\nLugar: ${a.lugar}\nFecha: ${a.fecha}\nHora: ${a.hora}\nEstado: ${a.estado}\n\n${a.descripcion}`
         );
       });
 
@@ -278,99 +261,14 @@ document.addEventListener("DOMContentLoaded", () => {
   renderAlertas();
 
   // ====================================
-  // AGREGAR NUEVA ALERTA + IMAGEN
-  // ====================================
-  const modal = document.getElementById("modalAlerta");
-  const btnAdd = document.getElementById("btnAddAlerta");
-  const spanClose = document.querySelector(".modal .close");
-  const formAlerta = document.getElementById("formAlerta");
-  const mensajeForm = document.getElementById("mensajeForm");
-  const inputImagen = document.getElementById("imagenAlerta");
-  const previewImagen = document.getElementById("previewImagen");
-
-  btnAdd?.addEventListener("click", () => {
-    modal.style.display = "flex";
-    mensajeForm.textContent = "";
-  });
-
-  spanClose?.addEventListener("click", () => {
-    modal.style.display = "none";
-    previewImagen.style.display = "none";
-  });
-
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-      previewImagen.style.display = "none";
-    }
-  });
-
-  inputImagen?.addEventListener("change", () => {
-    const file = inputImagen.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        previewImagen.src = reader.result;
-        previewImagen.style.display = "block";
-      };
-      reader.readAsDataURL(file);
-    } else {
-      previewImagen.style.display = "none";
-    }
-  });
-
-  formAlerta?.addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    const titulo = document.getElementById("titulo").value.trim();
-    const lugar = document.getElementById("lugar").value.trim();
-    const fecha = document.getElementById("fecha").value.trim();
-    const hora = document.getElementById("hora").value.trim();
-    const descripcion = document.getElementById("descripcion").value.trim();
-
-    const imagen = inputImagen.files[0]
-      ? URL.createObjectURL(inputImagen.files[0])
-      : null;
-
-    if (!titulo || !lugar || !fecha || !hora || !descripcion) {
-      mensajeForm.textContent = "Por favor, rellena todos los campos.";
-      mensajeForm.style.color = "red";
-      return;
-    }
-
-    alertas.push({
-      titulo,
-      lugar,
-      fecha,
-      hora,
-      descripcion,
-      estado: "En proceso",
-      imagen,
-    });
-
-    renderAlertas();
-    mensajeForm.textContent = "¡Alerta guardada correctamente!";
-    mensajeForm.style.color = "green";
-
-    formAlerta.reset();
-    previewImagen.style.display = "none";
-
-    setTimeout(() => {
-      modal.style.display = "none";
-    }, 900);
-  });
-
-  // ====================================
   // COMUNICADOS (DIGESA)
   // ====================================
   const btnComunicados = document.getElementById("btnComunicados");
   const modalComunicados = document.getElementById("modalComunicados");
   const closeComunicados = document.getElementById("closeComunicados");
-
   const listaComunicados = document.getElementById("listaComunicados");
   const formComunicado = document.getElementById("formComunicado");
   const mensajeComunicado = document.getElementById("mensajeComunicado");
-
   const tituloFormComunicado = document.getElementById("tituloFormComunicado");
 
   const inputTituloCom = document.getElementById("tituloComunicado");
@@ -394,12 +292,6 @@ document.addEventListener("DOMContentLoaded", () => {
     modalComunicados.style.display = "none";
   });
 
-  window.addEventListener("click", (e) => {
-    if (e.target === modalComunicados) {
-      modalComunicados.style.display = "none";
-    }
-  });
-
   function renderComunicados() {
     listaComunicados.innerHTML = "";
 
@@ -412,46 +304,37 @@ document.addEventListener("DOMContentLoaded", () => {
       const card = document.createElement("div");
       card.className = "comunicado-card";
 
-      const info = document.createElement("div");
-      info.className = "comunicado-info";
-      info.innerHTML = `
-        <p><b>${c.titulo}</b></p>
-        <p><b>Fecha:</b> ${c.fecha}</p>
-        <p>${c.descripcion}</p>
-        ${c.enlace ? `<a href="${c.enlace}" target="_blank">Ver informe oficial</a>` : ""}
+      card.innerHTML = `
+        <div class="comunicado-info">
+          <p><b>${c.titulo}</b></p>
+          <p><b>Fecha:</b> ${c.fecha}</p>
+          <p>${c.descripcion}</p>
+          ${c.enlace ? `<a href="${c.enlace}" target="_blank">Ver informe</a>` : ""}
+        </div>
+        <div class="comunicado-actions">
+          <button class="btn btn-add" data-edit="${index}">Editar</button>
+          <button class="btn btn-add btn-eliminar-comunicado" data-del="${index}">Eliminar</button>
+        </div>
       `;
 
-      const acciones = document.createElement("div");
-      acciones.className = "comunicado-actions";
+      listaComunicados.appendChild(card);
+    });
 
-      const btnEditar = document.createElement("button");
-      btnEditar.textContent = "Editar";
-      btnEditar.className = "btn btn-add";
-      btnEditar.addEventListener("click", () => cargarComunicadoEnFormulario(index));
+    document.querySelectorAll("[data-edit]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        cargarComunicadoEnFormulario(e.target.dataset.edit);
+      });
+    });
 
-      const btnEliminar = document.createElement("button");
-      btnEliminar.textContent = "Eliminar";
-      btnEliminar.className = "btn btn-add btn-eliminar-comunicado";
-      btnEliminar.addEventListener("click", () => {
-        if (confirm("¿Seguro que deseas eliminar este comunicado?")) {
-          comunicados.splice(index, 1);
+    document.querySelectorAll("[data-del]").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        if (confirm("¿Eliminar comunicado?")) {
+          comunicados.splice(e.target.dataset.del, 1);
           guardarComunicados();
           renderComunicados();
         }
       });
-
-      acciones.appendChild(btnEditar);
-      acciones.appendChild(btnEliminar);
-
-      card.appendChild(info);
-      card.appendChild(acciones);
-
-      listaComunicados.appendChild(card);
     });
-  }
-
-  function guardarComunicados() {
-    localStorage.setItem("comunicadosDigesa", JSON.stringify(comunicados));
   }
 
   function limpiarFormularioComunicado() {
@@ -471,7 +354,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     indiceEditando = i;
     tituloFormComunicado.textContent = "Editar comunicado";
-    mensajeComunicado.textContent = "";
+  }
+
+  function guardarComunicados() {
+    localStorage.setItem("comunicadosDigesa", JSON.stringify(comunicados));
   }
 
   formComunicado?.addEventListener("submit", (e) => {
@@ -508,7 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ====================================
-  // SEGURIDAD DEL AGUA (BOTÓN NUEVO)
+  // SEGURIDAD DEL AGUA POR DISTRITO
   // ====================================
   const btnSeguridadAgua = document.getElementById("btnSeguridadAgua");
   const modalSeguridadAgua = document.getElementById("modalSeguridadAgua");
@@ -532,10 +418,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btnSeguridadAgua?.addEventListener("click", () => {
     modalSeguridadAgua.style.display = "flex";
-
     selectDistritoSeguridad.value = "";
     resultadoSeguridad.textContent = "";
-    resultadoSeguridad.style.color = "";
   });
 
   closeSeguridadAgua?.addEventListener("click", () => {
@@ -557,13 +441,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   window.addEventListener("click", (e) => {
-    if (e.target === modalSeguridadAgua) {
-      modalSeguridadAgua.style.display = "none";
-    }
+    if (e.target === modalSeguridadAgua) modalSeguridadAgua.style.display = "none";
   });
 
   // ====================================
-  // CONFIGURAR PREFERENCIAS
+  // PREFERENCIAS DE ALERTAS
   // ====================================
   const btnConfigPreferencias = document.getElementById("btnConfigPreferencias");
   const modalPreferencias = document.getElementById("modalPreferencias");
@@ -577,8 +459,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   btnConfigPreferencias?.addEventListener("click", () => {
     const prefs = JSON.parse(localStorage.getItem("preferenciasAlertas") || "{}");
+
     if (prefs.tipo) selectTipoAlerta.value = prefs.tipo;
     if (prefs.frecuencia) selectFrecuencia.value = prefs.frecuencia;
+
     modalPreferencias.style.display = "flex";
   });
 
@@ -599,7 +483,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("preferenciasAlertas", JSON.stringify(preferencias));
 
     alert(`✔ Preferencias guardadas.\nTipo: ${preferencias.tipo}\nFrecuencia: ${preferencias.frecuencia}`);
-
     modalPreferencias.style.display = "none";
     modalConfirmPreferencias.style.display = "none";
   });
@@ -613,4 +496,3 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === modalConfirmPreferencias) modalConfirmPreferencias.style.display = "none";
   });
 });
-
