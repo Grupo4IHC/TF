@@ -51,7 +51,7 @@
       </div>
     </header>
 
-    <main class="perfil-container">
+        <main class="perfil-container">
       <h1>Mi Perfil</h1>
 
       <div class="perfil-info">
@@ -59,11 +59,50 @@
         <p><strong>Nombre:</strong> <span id="nombre"></span></p>
         <p><strong>Correo:</strong> <span id="correo"></span></p>
         <p><strong>Número:</strong> <span id="numero"></span></p>
+        <p><strong>Rol:</strong> <span id="rol"></span></p>
       </div>
 
-      <button id="btnAtras" class="btn-volver">Volver atrás</button>
+      <div style="margin-top: 20px; display:flex; gap:10px; flex-wrap:wrap;">
+        <button id="btnAtras" class="btn-volver">Volver atrás</button>
+        <!-- Este botón SOLO se mostrará si el usuario es admin -->
+        <button id="btnGestionPersonal" class="btn-volver" style="background-color:#00bfa5;">
+          Gestionar personal técnico
+        </button>
+      </div>
     </main>
+
+    <!-- MODAL GESTIÓN DE PERSONAL -->
+    <div id="modalGestionPersonal" class="modal">
+      <div class="modal-card" style="max-width:800px; width:95%;">
+        <span id="closeGestionPersonal" class="close">&times;</span>
+        <h2>Gestión de personal técnico</h2>
+        <p style="font-size:14px; margin-bottom:10px;">
+          Como administrador puedes cambiar el rol de cada usuario o eliminarlo del sistema.
+        </p>
+
+        <div style="overflow-x:auto; max-height:400px;">
+          <table class="tabla-personal" style="width:100%; border-collapse:collapse; font-size:14px;">
+            <thead>
+              <tr>
+                <th style="border-bottom:1px solid #ddd; text-align:left; padding:6px;">Usuario</th>
+                <th style="border-bottom:1px solid #ddd; text-align:left; padding:6px;">Nombre</th>
+                <th style="border-bottom:1px solid #ddd; text-align:left; padding:6px;">Correo</th>
+                <th style="border-bottom:1px solid #ddd; text-align:left; padding:6px;">Rol</th>
+                <th style="border-bottom:1px solid #ddd; text-align:left; padding:6px;">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaPersonal"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
     <script src="assets/scripts/Perfil.js"></script>
   </body>
 </html>
+
+
+    <script src="assets/scripts/Perfil.js"></script>
+  </body>
+</html>
+
