@@ -193,6 +193,15 @@
           <input type="time" id="hora" required />
           <textarea id="descripcion" placeholder="Descripción de la alerta (IMPORTANTE: incluir direccion exacta y el tipo de riesgo que usted considera(" rows="3" required></textarea>
 
+          <!-- NUEVO: SELECT DE CATEGORÍA -->
+  <label for="categoriaAlerta"><b>Gravedad de la alerta:</b></label>
+  <select id="categoriaAlerta" class="filtro-select" style="margin-top:10px;" required>
+    <option value="leve">Leve</option>
+    <option value="moderada">Moderada</option>
+    <option value="critica">Crítica</option>
+  </select>
+  <!-- NUEVO -->
+          
           <label class="label-img">Adjuntar evidencia (opcional):</label>
           <input type="file" id="imagenAlerta" accept="image/*" />
           <img id="previewImagen" style="display:none; margin-top:10px; width:100%; border-radius:8px;" />
@@ -478,6 +487,7 @@
     <script src="assets/scripts/Alertas.js"></script>
   </body>
 </html>
+
 
 
 
