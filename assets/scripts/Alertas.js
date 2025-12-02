@@ -190,34 +190,69 @@ document.addEventListener("DOMContentLoaded", () => {
   // ALERTAS + IMAGEN
   // ====================================
   let alertas = [
-    {
-      titulo: "Niveles bajos de cloro residual",
-      lugar: "San Juan de Lurigancho",
-      fecha: "05/10/2025",
-      hora: "07:45 a.m.",
-      descripcion: "Se detectó un nivel de cloro inferior al recomendado.",
-      estado: "En proceso",
-      imagen: null,
-    },
-    {
-      titulo: "Corte programado de servicio",
-      lugar: "Villa El Salvador",
-      fecha: "05/10/2025",
-      hora: "10:00 a.m. - 8:00 p.m.",
-      descripcion: "Corte por mantenimiento.",
-      estado: "Terminado",
-      imagen: null,
-    },
-    {
-      titulo: "Presencia de turbidez visible",
-      lugar: "Comas",
-      fecha: "06/10/2025",
-      hora: "04:30 p.m.",
-      descripcion: "Evita consumir directamente.",
-      estado: "Solucionado",
-      imagen: null,
-    },
-  ];
+  {
+    titulo: "Niveles bajos de cloro residual",
+    lugar: "San Juan de Lurigancho",
+    fecha: "05/10/2025",
+    hora: "07:45 a.m.",
+    descripcion: "Se detectó un nivel de cloro inferior al recomendado.",
+    estado: "En proceso",
+    imagen: null,
+    cloro: 0.1,       // mg/L
+    bacterias: 5      // NMP/100 mL
+  },
+  {
+    titulo: "Corte programado de servicio",
+    lugar: "Villa El Salvador",
+    fecha: "05/10/2025",
+    hora: "10:00 a.m. - 8:00 p.m.",
+    descripcion: "Corte por mantenimiento.",
+    estado: "Terminado",
+    imagen: null,
+    cloro: 0.4,
+    bacterias: 0
+  },
+  {
+    titulo: "Presencia de turbidez visible",
+    lugar: "Comas",
+    fecha: "06/10/2025",
+    hora: "04:30 p.m.",
+    descripcion: "Evita consumir directamente.",
+    estado: "Solucionado",
+    imagen: null,
+    cloro: 0.3,
+    bacterias: 10
+  },
+];
+  
+function interpretarCalidadAgua(cloro, bacterias) {
+  // Ejemplo simple, puedes ajustar rangos si tu profe te da otros
+  if (bacterias > 0) {
+    return {
+      texto: "⛔ No apta para consumo (bacterias detectadas)",
+      clase: "calidad-roja"
+    };
+  }
+
+  if (cloro < 0.2) {
+    return {
+      texto: "⚠ Bajo nivel de cloro. Se recomienda hervir el agua.",
+      clase: "calidad-amarilla"
+    };
+  }
+
+  if (cloro > 0.8) {
+    return {
+      texto: "⚠ Cloro elevado. Puede alterar sabor u olor.",
+      clase: "calidad-amarilla"
+    };
+  }
+
+  return {
+    texto: "✅ Agua dentro de parámetros seguros.",
+    clase: "calidad-verde"
+  };
+}
 
   function renderAlertas() {
     listaAlertas.innerHTML = "";
@@ -225,6 +260,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const div = document.createElement("div");
       div.className = "alerta-card";
 
+      const interprete = interpretarCalidadAgua(a.cloro, a.bacterias);
+      
       div.innerHTML = `
         <div class="alerta-info">
           <i class="fa-regular fa-bell"></i>
@@ -644,6 +681,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   });
+
 
 
 
