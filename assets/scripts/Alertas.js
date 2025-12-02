@@ -379,7 +379,7 @@ btnExportarPDF?.addEventListener("click", async () => {
   // ====================================
   // ALERTAS + IMAGEN
   // ====================================
-  let alertas = [
+let alertas = [
   {
     titulo: "Niveles bajos de cloro residual",
     lugar: "San Juan de Lurigancho",
@@ -391,7 +391,9 @@ btnExportarPDF?.addEventListener("click", async () => {
     cloro: 0.1,
     bacterias: 5,
     comentarioTecnico: "",
-    resultadoTecnico: "Pendiente"
+    resultadoTecnico: "Pendiente",
+    responsable: "No asignado",
+    fechaActualizacion: "05/10/2025 08:00 a.m."
   },
   {
     titulo: "Corte programado de servicio",
@@ -404,7 +406,9 @@ btnExportarPDF?.addEventListener("click", async () => {
     cloro: 0.4,
     bacterias: 0,
     comentarioTecnico: "",
-    resultadoTecnico: "Pendiente"
+    resultadoTecnico: "Pendiente",
+    responsable: "Área de Operaciones",
+    fechaActualizacion: "05/10/2025 09:30 a.m."
   },
   {
     titulo: "Presencia de turbidez visible",
@@ -417,9 +421,12 @@ btnExportarPDF?.addEventListener("click", async () => {
     cloro: 0.3,
     bacterias: 10,
     comentarioTecnico: "",
-    resultadoTecnico: "Pendiente"
+    resultadoTecnico: "Pendiente",
+    responsable: "Equipo de Calidad",
+    fechaActualizacion: "06/10/2025 05:00 p.m."
   },
 ];
+
   
   function interpretarCalidadAgua(cloro, bacterias) {
     // Ejemplo simple, puedes ajustar rangos si tu profe te da otros
@@ -482,6 +489,9 @@ btnExportarPDF?.addEventListener("click", async () => {
   </span>
 </p>
 
+<p><b>Responsable:</b> ${a.responsable || "No asignado"}</p>
+<p><b>Última actualización:</b> ${a.fechaActualizacion || "—"}</p>
+
 <p><b>Revisión técnica:</b>
   <span class="badge-revision ${
     a.resultadoTecnico === "Confirmada"
@@ -493,6 +503,22 @@ btnExportarPDF?.addEventListener("click", async () => {
     ${a.resultadoTecnico || "Pendiente"}
   </span>
 </p>
+
+${
+  a.comentarioTecnico
+    ? `<p class="comentario-tecnico"><b>Comentario técnico:</b> ${a.comentarioTecnico}</p>`
+    : ""
+}
+
+<button class="btn btn-add btn-revision-tecnica" data-index="${index}">
+  Revisión técnica
+</button>
+
+<button class="btn btn-add btn-estado" data-index="${index}">
+  Actualizar estado
+</button>
+
+
 
 ${
   a.comentarioTecnico
@@ -642,8 +668,11 @@ ${
   cloro: 0.4,          // valor por defecto
   bacterias: 0,        // valor por defecto
   comentarioTecnico: "",
-  resultadoTecnico: "Pendiente"
+  resultadoTecnico: "Pendiente",
+  responsable: "No asignado",
+  fechaActualizacion: new Date().toLocaleString("es-PE")
 });
+
 
     renderAlertas();
     mensajeForm.textContent = "¡Alerta guardada correctamente!";
@@ -969,6 +998,7 @@ ${
     }
   });
 });
+
 
 
 
