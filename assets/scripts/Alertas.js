@@ -586,10 +586,6 @@ ${
     : ""
 }
 
-<button class="btn btn-add btn-revision-tecnica" data-index="${index}">
-  Revisión técnica
-</button>
-
 <button class="btn btn-add btn-compartir" data-index="${index}">
   Compartir
 </button>
@@ -1058,6 +1054,7 @@ ${
     }
   });
 });
+
 
 
 
