@@ -54,45 +54,52 @@
 
     <!-- MAIN -->
     <main>
-      <h1>Alertas y Notificaciones</h1>
+  <h1>Alertas y Notificaciones</h1>
 
-      <select id="filtroDistrito" class="filtro-select">
-        <option value="todos">Todos los Distritos</option>
-        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
-        <option value="Comas">Comas</option>
-        <option value="San Martín de Porres">San Martín de Porres</option>
-        <option value="Villa El Salvador">Villa El Salvador</option>
-        <option value="Los Olivos">Los Olivos</option>
-        <option value="Ate">Ate</option>
-        <option value="Rímac">Rímac</option>
-        <option value="Surco">Surco</option>
-        <option value="Breña">Breña</option>
-        <option value="Chorrillos">Chorrillos</option>
-      </select>
+  <select id="filtroDistrito" class="filtro-select">
+    <option value="todos">Todos los Distritos</option>
+    <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+    <option value="Comas">Comas</option>
+    <option value="San Martín de Porres">San Martín de Porres</option>
+    <option value="Villa El Salvador">Villa El Salvador</option>
+    <option value="Los Olivos">Los Olivos</option>
+    <option value="Ate">Ate</option>
+    <option value="Rímac">Rímac</option>
+    <option value="Surco">Surco</option>
+    <option value="Breña">Breña</option>
+    <option value="Chorrillos">Chorrillos</option>
+  </select>
 
-      <div class="btns">
-  <button class="btn btn-add" id="btnNotificaciones">Recibir Notificaciones</button>
-  <button class="btn btn-add" id="btnRecomendacion">Recomendación del Día</button>
-  <button class="btn btn-add" id="btnNotifPersonalizadas">Notificaciones Personalizadas</button>
-  <button class="btn btn-add" id="btnConfigPreferencias">Configurar Preferencias</button>
-  <button class="btn btn-add" id="btnSeguridadAgua">Ver seguridad del agua</button>
-  <button class="btn btn-add" id="btnComunicados">Comunicados</button>
-  <button class="btn btn-add" id="btnEncuestas">
-    Recibir encuestas
-  </button>
-</div>
+  <!-- BLOQUE DE INSIGNIAS POR PARTICIPACIÓN -->
+  <div class="insignias-usuario">
+    <p>Tu insignia: <span id="insigniaUsuario">Sin insignia</span></p>
+    <button id="btnReportarInfo" class="btn btn-add">
+      Reportar / Validar información
+    </button>
+  </div>
 
+  <div class="btns">
+    <button class="btn btn-add" id="btnNotificaciones">Recibir Notificaciones</button>
+    <button class="btn btn-add" id="btnRecomendacion">Recomendación del Día</button>
+    <button class="btn btn-add" id="btnNotifPersonalizadas">Notificaciones Personalizadas</button>
+    <button class="btn btn-add" id="btnConfigPreferencias">Configurar Preferencias</button>
+    <button class="btn btn-add" id="btnSeguridadAgua">Ver seguridad del agua</button>
+    <button class="btn btn-add" id="btnComunicados">Comunicados</button>
+    <button class="btn btn-add" id="btnEncuestas">
+      Recibir encuestas
+    </button>
+  </div>
 
-      <div class="btns">
-        <button class="btn btn-add" id="btnAddAlerta">+ Añadir Alerta</button>
-      </div>
+  <div class="btns">
+    <button class="btn btn-add" id="btnAddAlerta">+ Añadir Alerta</button>
+  </div>
 
-      <div class="alertas-list" id="alertasList"></div>
+  <div class="alertas-list" id="alertasList"></div>
 
-      <div class="btns">
-        <a href="SesionIniciada.html" class="btn btn-volver">← Volver</a>
-      </div>
-    </main>
+  <div class="btns">
+    <a href="SesionIniciada.html" class="btn btn-volver">← Volver</a>
+  </div>
+</main>
 
     <!-- MODAL CREAR ALERTA -->
     <div id="modalAlerta" class="modal">
@@ -356,6 +363,7 @@
     <script src="assets/scripts/Alertas.js"></script>
   </body>
 </html>
+
 
 
 
