@@ -104,6 +104,30 @@
   </div>
 </main>
 
+    <!-- MODAL COMPARTIR ALERTA -->
+<div id="modalCompartir" class="modal">
+  <div class="modal-card">
+    <span id="closeCompartir" class="close">&times;</span>
+    <h2>Compartir alerta con entidades</h2>
+
+    <label for="entidadCompartir"><b>Selecciona entidad:</b></label>
+    <select id="entidadCompartir" class="filtro-select">
+      <option value="">Seleccione</option>
+      <option value="SEDAPAL">SEDAPAL</option>
+      <option value="DIGESA">DIGESA</option>
+      <option value="SUNASS">SUNASS</option>
+    </select>
+
+    <p><b>Mensaje generado:</b></p>
+    <textarea id="mensajeCompartir" readonly></textarea>
+
+    <button id="btnCopiarCompartir" class="btn btn-add" style="margin-top:10px;">
+      Copiar mensaje
+    </button>
+  </div>
+</div>
+
+
     <!-- Modal del informe -->
 <div id="modalInforme" class="modal">
   <div class="modal-content">
@@ -415,6 +439,7 @@
     <script src="assets/scripts/Alertas.js"></script>
   </body>
 </html>
+
 
 
 
