@@ -560,9 +560,11 @@ let categoria = a.categoria || "leve";
       div.classList.add(`alerta-${categoria}`);
 
       div.innerHTML = `
-        <div class="alerta-info">
-          <i class="fa-regular fa-bell"></i>
-          <div class="alerta-text">
+  <div class="alerta-info">
+    <i class="fa-regular fa-bell"></i>
+    <div class="alerta-text">
+
+      <p class="alerta-categoria">${categoria.toUpperCase()}</p>
             <p><b>Alerta:</b> ${a.titulo}</p>
 
             <!-- 🔹 NUEVO: etiqueta visible de categoría -->
@@ -1154,4 +1156,5 @@ let categoria = a.categoria || "leve";
     }
   });
 });
+
 
