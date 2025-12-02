@@ -1,6 +1,4 @@
-// ===========================
 // MENÚ HAMBURGUESA
-// ===========================
 const hamburger = document.getElementById("hamburger");
 const nav = document.querySelector(".nav");
 const registrarBtn = document.querySelector(".btn-registrarse");
@@ -212,3 +210,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
