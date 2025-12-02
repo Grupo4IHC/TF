@@ -43,39 +43,58 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===========================
-  // CARGAR DATOS DEL PERFIL
-  // ===========================
-  const spanUsuario = document.getElementById("usuario");
-  const spanNombre = document.getElementById("nombre");
-  const spanCorreo = document.getElementById("correo");
-  const spanNumero = document.getElementById("numero");
-  const spanRol = document.getElementById("rol");
+ // ===========================
+// CARGAR DATOS DEL PERFIL
+// ===========================
+const spanUsuario = document.getElementById("usuario");
+const spanNombre = document.getElementById("nombre");
+const spanCorreo = document.getElementById("correo");
+const spanNumero = document.getElementById("numero");
+const spanRol = document.getElementById("rol");
 
-  // 👇 aquí se asume que tus usuarios están guardados en este key:
-  // localStorage.setItem("usuariosAquaAlert", JSON.stringify([...]))
-  let usuarios = JSON.parse(localStorage.getItem("usuariosAquaAlert") || "[]");
+// 👇 aquí se asume que tus usuarios están guardados en este key:
+let usuarios = JSON.parse(localStorage.getItem("usuariosAquaAlert") || "[]");
 
-  // Buscamos el usuario logueado por nombre de usuario o correo
-  let usuarioActual =
-    usuarios.find(
-      (u) => u.usuario === nombreActivo || u.correo === nombreActivo
-    ) || null;
+// Buscamos el usuario logueado por nombre de usuario o correo
+let usuarioActual =
+  usuarios.find(
+    (u) => u.usuario === nombreActivo || u.correo === nombreActivo
+  ) || null;
 
-  if (usuarioActual) {
-    spanUsuario.textContent = usuarioActual.usuario || nombreActivo || "-";
-    spanNombre.textContent = usuarioActual.nombre || "-";
-    spanCorreo.textContent = usuarioActual.correo || "-";
-    spanNumero.textContent = usuarioActual.numero || "-";
-    spanRol.textContent = usuarioActual.rol || "Ciudadano/a";
-  } else {
-    // fallback si no lo encontramos en el array
-    spanUsuario.textContent = nombreActivo || "-";
-    spanNombre.textContent = "-";
-    spanCorreo.textContent = "-";
-    spanNumero.textContent = "-";
-    spanRol.textContent = "Ciudadano/a";
-  }
+// 🔥 NUEVO: si no existe en usuariosAquaAlert, lo creamos como admin (beta)
+if (!usuarioActual && nombreActivo) {
+  usuarioActual = {
+    usuario: nombreActivo,
+    nombre: localStorage.getItem("nombreRegistrado") || "-",
+    correo: localStorage.getItem("correoRegistrado") || "-",
+    numero: localStorage.getItem("numeroRegistrado") || "-",
+    rol: "admin",
+  };
+  usuarios.push(usuarioActual);
+  localStorage.setItem("usuariosAquaAlert", JSON.stringify(usuarios));
+}
+
+// Pintar datos en pantalla
+if (usuarioActual) {
+  spanUsuario.textContent = usuarioActual.usuario || nombreActivo || "-";
+  spanNombre.textContent = usuarioActual.nombre || "-";
+  spanCorreo.textContent = usuarioActual.correo || "-";
+  spanNumero.textContent = usuarioActual.numero || "-";
+
+  // mostramos nombre bonito del rol
+  let rolTexto = "Ciudadano/a";
+  if (usuarioActual.rol === "admin") rolTexto = "Administrador/a";
+  if (usuarioActual.rol === "tecnico") rolTexto = "Técnico/a";
+
+  spanRol.textContent = rolTexto;
+} else {
+  // fallback extremo (no debería pasar casi nunca)
+  spanUsuario.textContent = nombreActivo || "-";
+  spanNombre.textContent = "-";
+  spanCorreo.textContent = "-";
+  spanNumero.textContent = "-";
+  spanRol.textContent = "Ciudadano/a";
+}
 
   // ===========================
   // BOTÓN VOLVER ATRÁS
@@ -210,4 +229,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
 
