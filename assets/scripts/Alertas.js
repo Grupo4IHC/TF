@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lugar: "San Juan de Lurigancho",
     fecha: "05/10/2025",
     hora: "07:45 a.m.",
-    descripcion: "Se detectó un nivel de cloro inferior al recomendadooo.",
+    descripcion: "Se detectó un nivel de cloro inferior al recomendado.",
     estado: "En proceso",
     imagen: null,
     cloro: 0.1,       // mg/L
@@ -693,6 +693,7 @@ function interpretarCalidadAgua(cloro, bacterias) {
     }
   });
   });
+
 
 
 
