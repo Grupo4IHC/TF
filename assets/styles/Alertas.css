@@ -423,5 +423,36 @@ h1 {
   }
 }
 
+/* ===== AJUSTES MODAL PREFERENCIAS EN PANTALLA GRANDE ===== */
+@media (min-width: 1024px) {
+  /* Modal un poco más estrecho */
+  #modalPreferencias .modal-card {
+    max-width: 600px;
+  }
+
+  /* Centramos el texto descriptivo */
+  #modalPreferencias .modal-card p {
+    max-width: 80%;
+    margin: 0 auto 15px auto;
+  }
+
+  /* Labels y selects alineados y centrados */
+  #modalPreferencias label,
+  #modalPreferencias .filtro-select {
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Botón "Guardar Preferencias" centrado y del mismo ancho que los selects */
+  #modalPreferencias #btnGuardarPreferencias {
+    display: block;
+    max-width: 80%;
+    margin: 20px auto 0 auto;
+  }
+}
+
+
+
 
 
