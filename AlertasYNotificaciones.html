@@ -75,7 +75,7 @@
         <button class="btn btn-add" id="btnRecomendacion">Recomendación del Día</button>
         <button class="btn btn-add" id="btnNotifPersonalizadas">Notificaciones Personalizadas</button>
         <button class="btn btn-add" id="btnConfigPreferencias">Configurar Preferencias</button>
-        <!-- NUEVO BOTÓN -->
+        <button class="btn btn-add" id="btnEncuestas">Recibir encuestas</button>
         <button class="btn btn-add" id="btnSeguridadAgua">Ver seguridad del agua</button>
         <button class="btn btn-add" id="btnComunicados">Comunicados</button>
       </div>
@@ -259,14 +259,31 @@
           Aquí se publican los comunicados con resultados confirmados por DIGESA u otras autoridades.
         </p>
 
+        <!-- MODAL ENCUESTAS -->
+<div id="modalEncuestas" class="modal">
+  <div class="modal-card">
+    <span class="close" id="closeEncuestas">&times;</span>
+
+    <h2>Encuestas sobre el servicio de agua</h2>
+    <p>
+      ¿Deseas recibir encuestas al celular o al correo para compartir tu opinión
+      sobre la calidad del agua y los servicios recibidos?
+    </p>
+
+    <div style="display:flex; gap:1rem; justify-content:center; margin-top:20px;">
+      <button id="btnEncuestaSi" class="btn-choice btn-si">Sí</button>
+      <button id="btnEncuestaNo" class="btn-choice btn-no">No</button>
+    </div>
+  </div>
+</div>
+
+
         <!-- LISTA DE COMUNICADOS -->
         <div id="listaComunicados" class="lista-comunicados">
-          <!-- Se llena dinámicamente desde Alertas.js -->
         </div>
 
         <hr class="modal-comunicados-divider" />
 
-        <!-- FORMULARIO PARA CREAR / EDITAR -->
         <h3 id="tituloFormComunicado" class="form-comunicado-titulo">
           Nuevo comunicado
         </h3>
@@ -355,6 +372,7 @@
     <script src="assets/scripts/Alertas.js"></script>
   </body>
 </html>
+
 
 
 
