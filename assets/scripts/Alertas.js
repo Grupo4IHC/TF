@@ -201,43 +201,46 @@ document.addEventListener("DOMContentLoaded", () => {
   // ALERTAS + IMAGEN
   // ====================================
   let alertas = [
-    {
-      titulo: "Niveles bajos de cloro residual",
-      lugar: "San Juan de Lurigancho",
-      fecha: "05/10/2025",
-      hora: "07:45 a.m.",
-      descripcion: "Se detectó un nivel de cloro inferior al recomendado.",
-      estado: "En proceso",
-      imagen: null,
-      cloro: 0.1,       // mg/L
-      bacterias: 5,     // NMP/100 mL
-      comentarioTecnico: ""
-    },
-    {
-      titulo: "Corte programado de servicio",
-      lugar: "Villa El Salvador",
-      fecha: "05/10/2025",
-      hora: "10:00 a.m. - 8:00 p.m.",
-      descripcion: "Corte por mantenimiento.",
-      estado: "Terminado",
-      imagen: null,
-      cloro: 0.4,
-      bacterias: 0,
-      comentarioTecnico: ""
-    },
-    {
-      titulo: "Presencia de turbidez visible",
-      lugar: "Comas",
-      fecha: "06/10/2025",
-      hora: "04:30 p.m.",
-      descripcion: "Evita consumir directamente.",
-      estado: "Solucionado",
-      imagen: null,
-      cloro: 0.3,
-      bacterias: 10,
-      comentarioTecnico: ""
-    },
-  ];
+  {
+    titulo: "Niveles bajos de cloro residual",
+    lugar: "San Juan de Lurigancho",
+    fecha: "05/10/2025",
+    hora: "07:45 a.m.",
+    descripcion: "Se detectó un nivel de cloro inferior al recomendado.",
+    estado: "En proceso",
+    imagen: null,
+    cloro: 0.1,
+    bacterias: 5,
+    comentarioTecnico: "",
+    resultadoTecnico: "Pendiente"
+  },
+  {
+    titulo: "Corte programado de servicio",
+    lugar: "Villa El Salvador",
+    fecha: "05/10/2025",
+    hora: "10:00 a.m. - 8:00 p.m.",
+    descripcion: "Corte por mantenimiento.",
+    estado: "Terminado",
+    imagen: null,
+    cloro: 0.4,
+    bacterias: 0,
+    comentarioTecnico: "",
+    resultadoTecnico: "Pendiente"
+  },
+  {
+    titulo: "Presencia de turbidez visible",
+    lugar: "Comas",
+    fecha: "06/10/2025",
+    hora: "04:30 p.m.",
+    descripcion: "Evita consumir directamente.",
+    estado: "Solucionado",
+    imagen: null,
+    cloro: 0.3,
+    bacterias: 10,
+    comentarioTecnico: "",
+    resultadoTecnico: "Pendiente"
+  },
+];
   
   function interpretarCalidadAgua(cloro, bacterias) {
     // Ejemplo simple, puedes ajustar rangos si tu profe te da otros
@@ -286,31 +289,42 @@ document.addEventListener("DOMContentLoaded", () => {
             <p><b>Hora:</b> ${a.hora}</p>
             ${a.imagen ? `<img src="${a.imagen}" class="alerta-img" />` : ""}
 
-            <!-- NUEVO: datos técnicos resumidos -->
             <p class="datos-tecnicos">
               Cloro: <b>${a.cloro} mg/L</b> · Bacterias: <b>${a.bacterias} NMP/100 mL</b>
             </p>
 
-            <!-- NUEVO: frase simple con color -->
             <p class="chip-calidad ${interprete.clase}">
               ${interprete.texto}
             </p>
 
-            <p><b>Estado:</b> 
-              <span class="estado ${a.estado.replace(" ", "-").toLowerCase()}">
-                ${a.estado}
-              </span>
-            </p>
+<p><b>Estado:</b> 
+  <span class="estado ${a.estado.replace(" ", "-").toLowerCase()}">
+    ${a.estado}
+  </span>
+</p>
 
-            ${
-              a.comentarioTecnico
-                ? `<p class="comentario-tecnico"><b>Comentario técnico:</b> ${a.comentarioTecnico}</p>`
-                : ""
-            }
+<p><b>Revisión técnica:</b>
+  <span class="badge-revision ${
+    a.resultadoTecnico === "Confirmada"
+      ? "rev-confirmada"
+      : a.resultadoTecnico === "Descartada"
+      ? "rev-descartada"
+      : "rev-pendiente"
+  }">
+    ${a.resultadoTecnico || "Pendiente"}
+  </span>
+</p>
 
-            <button class="btn btn-add btn-revision-tecnica" data-index="${index}">
-              Revisión técnica
-            </button>
+${
+  a.comentarioTecnico
+    ? `<p class="comentario-tecnico"><b>Comentario técnico:</b> ${a.comentarioTecnico}</p>`
+    : ""
+}
+
+<button class="btn btn-add btn-revision-tecnica" data-index="${index}">
+  Revisión técnica
+</button>
+
           </div>
         </div>
         <i class="fa-solid fa-arrow-right"></i>
@@ -355,20 +369,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Guardar revisión técnica
   formRevisionTecnica?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    if (alertaSeleccionada === null) return;
+  e.preventDefault();
+  if (alertaSeleccionada === null) return;
 
-    const resultado = selectResultadoTecnico.value;
-    const comentario = comentarioTecnicoInput.value.trim();
+  const resultado = selectResultadoTecnico.value; // Confirmada / Descartada
+  const comentario = comentarioTecnicoInput.value.trim();
 
-    alertas[alertaSeleccionada].estado = resultado;
-    alertas[alertaSeleccionada].comentarioTecnico = comentario;
+  // ✅ Solo actualizamos la parte técnica,
+  // NO tocamos el estado operativo de la alerta
+  alertas[alertaSeleccionada].resultadoTecnico = resultado;
+  alertas[alertaSeleccionada].comentarioTecnico = comentario;
 
-    renderAlertas();
-    modalRevisionTecnica.style.display = "none";
+  renderAlertas();
+  modalRevisionTecnica.style.display = "none";
 
-    alert("✅ Revisión técnica guardada para esta alerta.");
-  });
+  alert("✅ Revisión técnica guardada para esta alerta.");
+});
+
 
   // ====================================
   // AGREGAR NUEVA ALERTA
@@ -431,17 +448,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     alertas.push({
-      titulo,
-      lugar,
-      fecha,
-      hora,
-      descripcion,
-      estado: "En proceso",
-      imagen,
-      cloro: 0.4,          // valor por defecto
-      bacterias: 0,        // valor por defecto
-      comentarioTecnico: "" // aún no revisada
-    });
+  titulo,
+  lugar,
+  fecha,
+  hora,
+  descripcion,
+  estado: "En proceso",
+  imagen,
+  cloro: 0.4,          // valor por defecto
+  bacterias: 0,        // valor por defecto
+  comentarioTecnico: "",
+  resultadoTecnico: "Pendiente"
+});
 
     renderAlertas();
     mensajeForm.textContent = "¡Alerta guardada correctamente!";
@@ -767,3 +785,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
