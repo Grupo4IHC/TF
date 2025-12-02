@@ -63,20 +63,40 @@ document
       return;
     }
 
-    // Si pasa todas las validaciones, se guarda en localStorage
+    // ==============
+    // GUARDADO SIMPLE (lo que ya tenías)
+    // ==============
     localStorage.setItem("usuarioRegistrado", usuario);
     localStorage.setItem("contrasenaRegistrada", contrasena);
     localStorage.setItem("nombreRegistrado", nombre);
     localStorage.setItem("correoRegistrado", correo);
     localStorage.setItem("numeroRegistrado", numero);
 
-    // NUEVO: guardar tipo de abastecimiento
     localStorage.setItem("abastecimientoRegistrado", tipoAbastecimiento);
-    // Y también dejarlo como el activo para usarlo en otras pantallas
     localStorage.setItem("abastecimientoActivo", tipoAbastecimiento);
 
-    // Mantener nombre como usuario activo
-    localStorage.setItem("usuarioActivo", nombre);
+    // MUY IMPORTANTE 👉 que el activo sea el usuario (no el nombre)
+    localStorage.setItem("usuarioActivo", usuario);
+
+    // ==============
+    // NUEVO: GUARDAR EN ARRAY usuariosAquaAlert CON ROL ADMIN
+    // ==============
+    let usuarios = JSON.parse(
+      localStorage.getItem("usuariosAquaAlert") || "[]"
+    );
+
+    const nuevoUsuario = {
+      usuario,
+      nombre,
+      correo,
+      numero,
+      password: contrasena,
+      tipoAbastecimiento,
+      rol: "admin", // 👉 todos admin en la beta
+    };
+
+    usuarios.push(nuevoUsuario);
+    localStorage.setItem("usuariosAquaAlert", JSON.stringify(usuarios));
 
     // Redirige a la página de éxito
     window.location.href = "ExitoRegistro.html";
@@ -102,4 +122,3 @@ hamburger.addEventListener("click", () => {
     hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
   }
 });
-
