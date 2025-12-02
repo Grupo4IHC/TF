@@ -104,6 +104,31 @@
   </div>
 </main>
 
+    <!-- MODAL ACTUALIZAR ESTADO DE INCIDENCIA -->
+<div id="modalEstado" class="modal">
+  <div class="modal-card">
+    <span id="closeEstado" class="close">&times;</span>
+    <h2>Actualizar estado de incidencia</h2>
+    <p id="tituloEstadoIncidencia" style="font-size:14px; margin-bottom:10px;"></p>
+
+    <label for="selectEstadoIncidencia"><b>Estado:</b></label>
+    <select id="selectEstadoIncidencia" class="filtro-select">
+      <option value="Pendiente">Pendiente</option>
+      <option value="En proceso">En proceso</option>
+      <option value="Solucionado">Solucionado</option>
+      <option value="Terminado">Terminado</option>
+    </select>
+
+    <label for="inputResponsable"><b>Responsable:</b></label>
+    <input id="inputResponsable" type="text" placeholder="Ej. Equipo de Calidad / Ing. Pérez" />
+
+    <button id="btnGuardarEstado" class="btn btn-add" style="margin-top:15px;">
+      Guardar cambios
+    </button>
+  </div>
+</div>
+
+    
     <!-- MODAL COMPARTIR ALERTA -->
 <div id="modalCompartir" class="modal">
   <div class="modal-card">
@@ -439,6 +464,7 @@
     <script src="assets/scripts/Alertas.js"></script>
   </body>
 </html>
+
 
 
 
