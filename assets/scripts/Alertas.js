@@ -21,7 +21,6 @@ hamburger.addEventListener("click", () => {
 // ESPERAR A QUE HTML CARGUE
 // ====================================
 document.addEventListener("DOMContentLoaded", () => {
-
   // ====================================
   // NOTIFICACIONES PERSONALIZADAS
   // ====================================
@@ -235,29 +234,157 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => { modal.style.display = "none"; }, 1000);
   });
 
-  // ====================================
-  // PREFERENCIAS
-  // ====================================
-  const btnConfigPreferencias = document.getElementById("btnConfigPreferencias");
-  const modalPreferencias = document.getElementById("modalPreferencias");
-  const closePreferencias = document.getElementById("closePreferencias");
-  const selectTipoAlerta = document.getElementById("selectTipoAlerta");
-  const selectFrecuencia = document.getElementById("selectFrecuencia");
-  const modalConfirmPreferencias = document.getElementById("modalConfirmPreferencias");
-  const btnGuardarPreferencias = document.getElementById("btnGuardarPreferencias");
-  const btnPrefSi = document.getElementById("btnPrefSi");
-  const btnPrefNo = document.getElementById("btnPrefNo");
 
-  btnConfigPreferencias?.addEventListener("click", () => { modalPreferencias.style.display = "flex"; });
-  closePreferencias?.addEventListener("click", () => { modalPreferencias.style.display = "none"; });
-  btnGuardarPreferencias?.addEventListener("click", () => { modalConfirmPreferencias.style.display = "flex"; });
-  btnPrefSi?.addEventListener("click", () => {
-    localStorage.setItem("preferenciasAlertas", JSON.stringify({ tipo: selectTipoAlerta.value, frecuencia: selectFrecuencia.value }));
-    alert(`✔ Preferencias guardadas.\nTipo: ${selectTipoAlerta.value}\nFrecuencia: ${selectFrecuencia.value}`);
-    modalPreferencias.style.display = "none";
-    modalConfirmPreferencias.style.display = "none";
+  // ====================================
+  // COMUNICADOS OFICIALES (DIGESA)
+  // ====================================
+
+  const btnComunicados = document.getElementById("btnComunicados");
+  const modalComunicados = document.getElementById("modalComunicados");
+  const closeComunicados = document.getElementById("closeComunicados");
+
+  const listaComunicados = document.getElementById("listaComunicados");
+  const formComunicado = document.getElementById("formComunicado");
+  const mensajeComunicado = document.getElementById("mensajeComunicado");
+
+  const tituloFormComunicado = document.getElementById("tituloFormComunicado");
+
+  const inputTituloCom = document.getElementById("tituloComunicado");
+  const inputFechaCom = document.getElementById("fechaComunicado");
+  const inputDescripcionCom = document.getElementById("descripcionComunicado");
+  const inputEnlaceCom = document.getElementById("enlaceComunicado");
+
+  let comunicados = JSON.parse(localStorage.getItem("comunicadosDigesa") || "[]");
+  let indiceEditando = null;
+
+  // Mostrar modal de comunicados
+  btnComunicados?.addEventListener("click", () => {
+    renderComunicados();
+    limpiarFormularioComunicado();
+    tituloFormComunicado.textContent = "Nuevo comunicado";
+    indiceEditando = null;
+    mensajeComunicado.textContent = "";
+    modalComunicados.style.display = "flex";
   });
-  btnPrefNo?.addEventListener("click", () => { modalConfirmPreferencias.style.display = "none"; });
+
+  // Cerrar modal
+  closeComunicados?.addEventListener("click", () => {
+    modalComunicados.style.display = "none";
+  });
+
+  window.addEventListener("click", (e) => {
+    if (e.target === modalComunicados) {
+      modalComunicados.style.display = "none";
+    }
+  });
+
+  // Renderizar lista
+  function renderComunicados() {
+    listaComunicados.innerHTML = "";
+
+    if (comunicados.length === 0) {
+      listaComunicados.innerHTML = "<p>No hay comunicados registrados.</p>";
+      return;
+    }
+
+    comunicados.forEach((c, index) => {
+      const card = document.createElement("div");
+      card.className = "comunicado-card";
+
+      const info = document.createElement("div");
+      info.className = "comunicado-info";
+      info.innerHTML = `
+        <p><b>${c.titulo}</b></p>
+        <p><b>Fecha:</b> ${c.fecha}</p>
+        <p style="font-size: 13px;">${c.descripcion}</p>
+        ${c.enlace ? `<p style="font-size: 13px;"><a href="${c.enlace}" target="_blank">Ver informe oficial</a></p>` : ""}
+      `;
+
+      const botones = document.createElement("div");
+      botones.className = "comunicado-actions";
+
+      const btnEditar = document.createElement("button");
+      btnEditar.textContent = "Editar";
+      btnEditar.className = "btn btn-add";
+      btnEditar.addEventListener("click", () => cargarComunicadoEnFormulario(index));
+
+      const btnEliminar = document.createElement("button");
+      btnEliminar.textContent = "Eliminar";
+      btnEliminar.className = "btn btn-add btn-eliminar-comunicado";
+      btnEliminar.addEventListener("click", () => {
+        if (confirm("¿Seguro que deseas eliminar este comunicado?")) {
+          comunicados.splice(index, 1);
+          guardarComunicados();
+          renderComunicados();
+        }
+      });
+
+      botones.appendChild(btnEditar);
+      botones.appendChild(btnEliminar);
+
+      card.appendChild(info);
+      card.appendChild(botones);
+
+      listaComunicados.appendChild(card);
+    });
+  }
+
+  function guardarComunicados() {
+    localStorage.setItem("comunicadosDigesa", JSON.stringify(comunicados));
+  }
+
+  function limpiarFormularioComunicado() {
+    inputTituloCom.value = "";
+    inputFechaCom.value = "";
+    inputDescripcionCom.value = "";
+    inputEnlaceCom.value = "";
+  }
+
+  function cargarComunicadoEnFormulario(index) {
+    const c = comunicados[index];
+
+    inputTituloCom.value = c.titulo;
+    inputFechaCom.value = c.fecha;
+    inputDescripcionCom.value = c.descripcion;
+    inputEnlaceCom.value = c.enlace || "";
+
+    indiceEditando = index;
+    tituloFormComunicado.textContent = "Editar comunicado";
+    mensajeComunicado.textContent = "";
+  }
+
+  formComunicado?.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const titulo = inputTituloCom.value.trim();
+    const fecha = inputFechaCom.value.trim();
+    const descripcion = inputDescripcionCom.value.trim();
+    const enlace = inputEnlaceCom.value.trim();
+
+    if (!titulo || !fecha || !descripcion) {
+      mensajeComunicado.textContent = "Por favor, completa título, fecha y descripción.";
+      mensajeComunicado.style.color = "red";
+      return;
+    }
+
+    const nuevo = { titulo, fecha, descripcion, enlace };
+
+    if (indiceEditando !== null) {
+      comunicados[indiceEditando] = nuevo;
+      mensajeComunicado.textContent = "Comunicado actualizado correctamente.";
+    } else {
+      comunicados.push(nuevo);
+      mensajeComunicado.textContent = "Comunicado guardado correctamente.";
+    }
+
+    mensajeComunicado.style.color = "green";
+
+    guardarComunicados();
+    renderComunicados();
+    limpiarFormularioComunicado();
+    indiceEditando = null;
+    tituloFormComunicado.textContent = "Nuevo comunicado";
+  });
 
 });
 
