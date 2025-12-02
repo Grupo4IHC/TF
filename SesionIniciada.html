@@ -89,13 +89,44 @@
             <i class="fa-solid fa-map"></i>
             <h3>Mapa de Puntos de Agua Potable</h3>
           </a>
-          <!-- Nuevo servicio: Historial de Actividad (abre modal, no cambia de página) -->
+          <!-- Nuevo servicio: Historial de Actividad (abre modal) -->
           <div class="service-card" id="serviceHistorial">
             <i class="fa-solid fa-clock-rotate-left"></i>
             <h3>Historial de Actividad</h3>
           </div>
         </div>
       </section>
+
+      <!-- MODAL HISTORIAL DE ACTIVIDAD -->
+      <div id="modalHistorial" class="modal">
+        <div class="modal-card modal-historial">
+          <span class="close" id="closeHistorial">&times;</span>
+
+          <h2>Historial de Actividad</h2>
+          <p class="historial-descripcion">
+            Registros de acciones realizadas por usuarios dentro del sistema.
+          </p>
+
+          <div class="historial-filtros">
+            <select id="filtroTipoHistorial">
+              <option value="todos">Todos los tipos</option>
+              <option value="Inicio de sesión">Inicio de sesión</option>
+              <option value="Intento de inicio de sesión fallido">Intentos fallidos</option>
+            </select>
+
+            <input
+              type="text"
+              id="filtroTextoHistorial"
+              placeholder="Buscar en historial..."
+            />
+          </div>
+
+          <div id="listaHistorial" class="historial-lista">
+            <!-- Historial -->
+          </div>
+        </div>
+      </div>
+      
     </main>
 
     <footer class="footer">
@@ -158,6 +189,7 @@
     <script src="assets/scripts/SesionIniciada.js"></script>
   </body>
 </html>
+
 
 
 
